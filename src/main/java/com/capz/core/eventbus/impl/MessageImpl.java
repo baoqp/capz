@@ -1,6 +1,7 @@
 package com.capz.core.eventbus.impl;
 
 import com.capz.core.AsyncResult;
+import com.capz.core.eventbus.DeliveryOptions;
 import com.capz.core.eventbus.Message;
 import com.capz.core.eventbus.MessageCodec;
 import org.slf4j.Logger;
