@@ -1,5 +1,7 @@
 package com.capz.core.eventbus.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.capz.core.Exception.ReplyException;
 import com.capz.core.buffer.Buffer;
 import com.capz.core.eventbus.MessageCodec;
@@ -11,6 +13,8 @@ import com.capz.core.eventbus.impl.codecs.CharMessageCodec;
 import com.capz.core.eventbus.impl.codecs.DoubleMessageCodec;
 import com.capz.core.eventbus.impl.codecs.FloatMessageCodec;
 import com.capz.core.eventbus.impl.codecs.IntMessageCodec;
+import com.capz.core.eventbus.impl.codecs.JSONArrayMessageCodec;
+import com.capz.core.eventbus.impl.codecs.JSONObjectMessageCodec;
 import com.capz.core.eventbus.impl.codecs.LongMessageCodec;
 import com.capz.core.eventbus.impl.codecs.NullMessageCodec;
 import com.capz.core.eventbus.impl.codecs.PingMessageCodec;
@@ -39,14 +43,16 @@ public class CodecManager {
     public static final MessageCodec<Character, Character> CHAR_MESSAGE_CODEC = new CharMessageCodec();
     public static final MessageCodec<Byte, Byte> BYTE_MESSAGE_CODEC = new ByteMessageCodec();
     public static final MessageCodec<ReplyException, ReplyException> REPLY_EXCEPTION_MESSAGE_CODEC = new ReplyExceptionMessageCodec();
+    public static final MessageCodec<JSONObject, JSONObject> JSON_OBJECT_MESSAGE_CODEC = new JSONObjectMessageCodec();
+    public static final MessageCodec<JSONArray, JSONArray> JSON_ARRAY_MESSAGE_CODEC = new JSONArrayMessageCodec();
 
     private final MessageCodec[] systemCodecs;
     private final ConcurrentMap<String, MessageCodec> userCodecMap = new ConcurrentHashMap<>();
     private final ConcurrentMap<Class, MessageCodec> defaultCodecMap = new ConcurrentHashMap<>();
 
     public CodecManager() {
-        this.systemCodecs = codecs(NULL_MESSAGE_CODEC, PING_MESSAGE_CODEC, STRING_MESSAGE_CODEC, BUFFER_MESSAGE_CODEC,
-                BYTE_ARRAY_MESSAGE_CODEC, INT_MESSAGE_CODEC, LONG_MESSAGE_CODEC, FLOAT_MESSAGE_CODEC, DOUBLE_MESSAGE_CODEC,
+        this.systemCodecs = codecs(NULL_MESSAGE_CODEC, PING_MESSAGE_CODEC, STRING_MESSAGE_CODEC, BUFFER_MESSAGE_CODEC,JSON_OBJECT_MESSAGE_CODEC,
+                JSON_OBJECT_MESSAGE_CODEC,BYTE_ARRAY_MESSAGE_CODEC, INT_MESSAGE_CODEC, LONG_MESSAGE_CODEC, FLOAT_MESSAGE_CODEC, DOUBLE_MESSAGE_CODEC,
                 BOOLEAN_MESSAGE_CODEC, SHORT_MESSAGE_CODEC, CHAR_MESSAGE_CODEC, BYTE_MESSAGE_CODEC, REPLY_EXCEPTION_MESSAGE_CODEC);
     }
 

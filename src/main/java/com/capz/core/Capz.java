@@ -1,6 +1,7 @@
 package com.capz.core;
 
 import com.capz.core.eventbus.EventBus;
+import com.capz.core.impl.CapzFactory;
 import com.capz.core.impl.Future;
 import io.netty.channel.EventLoopGroup;
 
@@ -15,7 +16,7 @@ public interface Capz {
 
     // TODO
     static Context currentContext() {
-        return null;
+        return factory.context();
     }
 
     EventBus eventBus();
@@ -52,4 +53,6 @@ public interface Capz {
     EventLoopGroup nettyEventLoopGroup();
 
     Handler<Throwable> exceptionHandler();
+
+    CapzFactory factory = new CapzFactory();
 }

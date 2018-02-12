@@ -19,11 +19,9 @@ public class HandlerHolder<T> {
     }
 
     public void setRemoved() {
-        boolean unregisterMetric = false;
         synchronized (this) {
             if (!removed) {
                 removed = true;
-                unregisterMetric = true;
             }
         }
     }

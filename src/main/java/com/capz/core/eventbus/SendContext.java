@@ -7,7 +7,6 @@ public interface SendContext<T> {
 
     void next();
 
-
     boolean send();
 
     Object sentBody();

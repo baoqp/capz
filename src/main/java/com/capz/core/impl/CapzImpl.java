@@ -32,6 +32,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author Bao Qingping
  */
 public class CapzImpl implements CapzInternal {
+
     private static final Logger log = LoggerFactory.getLogger(CapzImpl.class);
 
     private static final String NETTY_IO_RATIO_PROPERTY_NAME = "Capz.nettyIORatio";
@@ -60,7 +61,7 @@ public class CapzImpl implements CapzInternal {
     private final long defaultWorkerMaxExecTime;
 
 
-    CapzImpl() {
+    public CapzImpl() {
         this(new CapzOptions());
     }
 

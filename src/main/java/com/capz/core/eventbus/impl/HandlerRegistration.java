@@ -17,14 +17,14 @@ import java.util.ArrayDeque;
 import java.util.Objects;
 import java.util.Queue;
 
+
+// 在地址address上注册handler，在消费message的时候进行调用
 public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Message<T>> {
 
     private static final Logger log = LoggerFactory.getLogger(HandlerRegistration.class);
-
     public static final int DEFAULT_MAX_BUFFERED_MESSAGES = 1000;
 
     private final Capz capz;
-
     private final EventBusImpl eventBus;
     private final String address;
     private final String repliedAddress;
@@ -113,7 +113,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
 
     // TODO ???
     private void doUnregister(Handler<AsyncResult<Void>> completionHandler, boolean callEndHandler) {
-
+        // 取消定时任务
         if (timeoutID != -1) {
             capz.cancelTimer(timeoutID);
         }
@@ -201,7 +201,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
 
     private synchronized void checkNextTick() {
         // Check if there are more pending messages in the queue that can be processed next time around
-        /*if (!pending.isEmpty()) {
+        if (!pending.isEmpty()) {
             handlerContext.runOnContext(v -> {
                 Message<T> message;
                 Handler<Message<T>> theHandler;
@@ -213,7 +213,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
                 }
                 deliver(theHandler, message);
             });
-        }*/
+        }
     }
 
 

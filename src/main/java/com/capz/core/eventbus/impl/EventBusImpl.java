@@ -299,8 +299,6 @@ public class EventBusImpl implements EventBus {
     }
 
     protected <T> void sendOrPub(SendContextImpl<T> sendContext) {
-        MessageImpl message = sendContext.message;
-
         deliverMessageLocally(sendContext);
     }
 
@@ -308,9 +306,7 @@ public class EventBusImpl implements EventBus {
         return reply -> {
             Future<Message<T>> result;
             if (reply.body() instanceof ReplyException) {
-                // This is kind of clunky - but hey-ho
                 ReplyException exception = (ReplyException) reply.body();
-
                 result = Future.failedFuture(exception);
             } else {
                 result = Future.succeededFuture(reply);
@@ -330,7 +326,6 @@ public class EventBusImpl implements EventBus {
     protected <T> void deliverMessageLocally(SendContextImpl<T> sendContext) {
         if (!deliverMessageLocally(sendContext.message)) {
             // no handlers
-
             if (sendContext.handlerRegistration != null) {
                 sendContext.handlerRegistration.sendAsyncResultFailure(ReplyFailure.NO_HANDLERS,
                         "No handlers for address " + sendContext.message.address);
@@ -355,14 +350,12 @@ public class EventBusImpl implements EventBus {
                 }
             } else {
                 // Publish
-
                 for (HandlerHolder holder : handlers.list) {
                     deliverToHandler(msg, holder);
                 }
             }
             return true;
         } else {
-
             return false;
         }
     }
@@ -423,7 +416,7 @@ public class EventBusImpl implements EventBus {
 
         @Override
         public void next() {
-            if (iter.hasNext()) {
+            if (iter.hasNext()) { // TODO
                 Handler<SendContext> handler = iter.next();
                 try {
                     handler.handle(this);

@@ -40,7 +40,7 @@ public class DeliveryOptions {
         this.codecName = json.getString("codecName");
         String hdrsStr = json.getString("headers");
 
-        if(!StringUtil.isEmpty(hdrsStr)){
+        if (!StringUtil.isEmpty(hdrsStr)) {
             this.headers = JSON.parseObject(hdrsStr, Map.class); // TODO
         }
     }
@@ -62,7 +62,6 @@ public class DeliveryOptions {
     }
 
     public DeliveryOptions addHeader(String key, String value) {
-
         Objects.requireNonNull(key, "no null key accepted");
         Objects.requireNonNull(value, "no null value accepted");
 
@@ -75,6 +74,5 @@ public class DeliveryOptions {
 
         return this;
     }
-
 
 }
