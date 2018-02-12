@@ -10,7 +10,7 @@
         <module name="capz" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="capz" target="1.8" />
     </bytecodeTargetLevel>
   </component>

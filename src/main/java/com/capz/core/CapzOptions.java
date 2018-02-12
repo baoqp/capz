@@ -116,7 +116,7 @@ public class CapzOptions {
     }
 
 
-    public VertxOptions setClusterPublicHost(String clusterPublicHost) {
+    public CapzOptions setClusterPublicHost(String clusterPublicHost) {
         getEventBusOptions().setClusterPublicHost(clusterPublicHost);
         return this;
     }
@@ -153,35 +153,18 @@ public class CapzOptions {
         return this;
     }
 
-    /**
-     * Get the value of cluster ping reply interval, in ms.
-     * <p>
-     * After sending a ping, if a pong is not received in this time, the node will be considered dead.
-     *
-     * @return the value of cluster ping reply interval
-     */
+    
     public long getClusterPingReplyInterval() {
         return eventBusOptions.getClusterPingReplyInterval();
     }
 
-    /**
-     * Set the value of cluster ping reply interval, in ms.
-     *
-     * @param clusterPingReplyInterval The value of cluster ping reply interval, in ms.
-     * @return a reference to this, so the API can be used fluently
-     */
-    public VertxOptions setClusterPingReplyInterval(long clusterPingReplyInterval) {
+    
+    public CapzOptions setClusterPingReplyInterval(long clusterPingReplyInterval) {
         eventBusOptions.setClusterPingReplyInterval(clusterPingReplyInterval);
         return this;
     }
 
-    /**
-     * Get the value of blocked thread check period, in ms.
-     * <p>
-     * This setting determines how often Vert.x will check whether event loop threads are executing for too long.
-     *
-     * @return the value of blocked thread check period, in ms.
-     */
+    
     public long getBlockedThreadCheckInterval() {
         return blockedThreadCheckInterval;
     }
@@ -213,12 +196,6 @@ public class CapzOptions {
         return this;
     }
 
-
-
-    /*public CapzOptions setClusterManager(ClusterManager clusterManager) {
-        this.clusterManager = clusterManager;
-        return this;
-    }*/
 
 
     public CapzOptions setInternalBlockingPoolSize(int internalBlockingPoolSize) {

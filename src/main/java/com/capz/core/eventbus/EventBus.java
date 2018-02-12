@@ -14,11 +14,9 @@ public interface EventBus {
     // 异步发送信息
     <T> EventBus send(String address, Object message, Handler<AsyncResult<Message<T>>> replyHandler);
 
+    EventBus send(String address, Object message, DeliveryOptions options);
 
-    //EventBus send(String address, Object message, DeliveryOptions options);
-
-
-    //<T> EventBus send(String address, Object message, DeliveryOptions options, Handler<AsyncResult<Message<T>>> replyHandler);
+    <T> EventBus send(String address, Object message, DeliveryOptions options, Handler<AsyncResult<Message<T>>> replyHandler);
 
     // 发布消息
     EventBus publish(String address, Object message);

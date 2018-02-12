@@ -2,9 +2,13 @@ package com.capz.core.eventbus.impl;
 
 import com.capz.core.AsyncResult;
 import com.capz.core.Capz;
+import com.capz.core.Context;
+import com.capz.core.Exception.ReplyException;
 import com.capz.core.Handler;
 import com.capz.core.eventbus.Message;
 import com.capz.core.eventbus.MessageConsumer;
+import com.capz.core.eventbus.ReplyFailure;
+import com.capz.core.impl.Future;
 import com.capz.core.stream.ReadStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +33,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
     private long timeoutID = -1;
     private boolean registered;
     private Handler<Message<T>> handler;
-    //private Context handlerContext;
+    private Context handlerContext;
     private AsyncResult<Void> result;
     private Handler<AsyncResult<Void>> completionHandler;
     private Handler<Void> endHandler;
@@ -48,12 +52,12 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
         this.repliedAddress = repliedAddress;
         this.localOnly = localOnly;
         this.asyncResultHandler = asyncResultHandler;
-        /*if (timeout != -1) {
+        if (timeout != -1) {
             timeoutID = capz.setTimer(timeout, tid -> {
                 sendAsyncResultFailure(ReplyFailure.TIMEOUT,
                         "Timed out after waiting " + timeout + "(ms) for a reply. address: " + address + ", repliedAddress: " + repliedAddress);
             });
-        }*/
+        }
     }
 
     @Override
@@ -81,7 +85,7 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
         Objects.requireNonNull(completionHandler);
         if (result != null) {
             AsyncResult<Void> value = result;
-            //vertx.runOnContext(v -> completionHandler.handle(value));
+            capz.runOnContext(v -> completionHandler.handle(value));
         } else {
             this.completionHandler = completionHandler;
         }
@@ -102,15 +106,18 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
         doUnregister(null, callEndHandler);
     }
 
-   /* public void sendAsyncResultFailure(ReplyFailure failure, String msg) {
+    public void sendAsyncResultFailure(ReplyFailure failure, String msg) {
         unregister();
         asyncResultHandler.handle(Future.failedFuture(new ReplyException(failure, msg)));
-    }*/
+    }
 
+    // TODO ???
     private void doUnregister(Handler<AsyncResult<Void>> completionHandler, boolean callEndHandler) {
-       /* if (timeoutID != -1) {
-            vertx.cancelTimer(timeoutID);
+
+        if (timeoutID != -1) {
+            capz.cancelTimer(timeoutID);
         }
+
         if (endHandler != null && callEndHandler) {
             Handler<Void> theEndHandler = endHandler;
             Handler<AsyncResult<Void>> handler = completionHandler;
@@ -126,33 +133,28 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
             eventBus.removeRegistration(address, this, completionHandler);
         } else {
             callCompletionHandlerAsync(completionHandler);
-        }*/
+        }
     }
 
     private void callCompletionHandlerAsync(Handler<AsyncResult<Void>> completionHandler) {
-        /*if (completionHandler != null) {
-            vertx.runOnContext(v -> completionHandler.handle(Future.succeededFuture()));
-        }*/
+        if (completionHandler != null) {
+            capz.runOnContext(v -> completionHandler.handle(Future.succeededFuture()));
+        }
     }
 
-    /*synchronized void setHandlerContext(Context context) {
+    synchronized void setHandlerContext(Context context) {
         handlerContext = context;
     }
 
     public synchronized void setResult(AsyncResult<Void> result) {
         this.result = result;
         if (completionHandler != null) {
-            if (metrics != null && result.succeeded()) {
-                metric = metrics.handlerRegistered(address, repliedAddress);
-            }
             Handler<AsyncResult<Void>> callback = completionHandler;
-            vertx.runOnContext(v -> callback.handle(result));
+            capz.runOnContext(v -> callback.handle(result));
         } else if (result.failed()) {
             log.error("Failed to propagate registration for handler " + handler + " and address " + address);
-        } else if (metrics != null) {
-            metric = metrics.handlerRegistered(address, repliedAddress);
         }
-    }*/
+    }
 
     @Override
     public void handle(Message<T> message) {
@@ -182,25 +184,19 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
 
     private void deliver(Handler<Message<T>> theHandler, Message<T> message) {
 
-       /* checkNextTick();
+        checkNextTick();
         boolean local = true;
-        if (message instanceof ClusteredMessage) {
-            // A bit hacky
-            ClusteredMessage cmsg = (ClusteredMessage) message;
-            if (cmsg.isFromWire()) {
-                local = false;
-            }
-        }
-        String creditsAddress = message.headers().get(MessageProducerImpl.CREDIT_ADDRESS_HEADER_NAME);
+
+        /*String creditsAddress = message.headers().get(MessageProducerImpl.CREDIT_ADDRESS_HEADER_NAME);
         if (creditsAddress != null) {
             eventBus.send(creditsAddress, 1);
-        }
+        }*/
         try {
             theHandler.handle(message);
         } catch (Exception e) {
             log.error("Failed to handleMessage. address: " + message.address(), e);
             throw e;
-        }*/
+        }
     }
 
     private synchronized void checkNextTick() {
@@ -268,13 +264,13 @@ public class HandlerRegistration<T> implements MessageConsumer<T>, Handler<Messa
 
     @Override
     public synchronized MessageConsumer<T> endHandler(Handler<Void> endHandler) {
-        /*if (endHandler != null) {
+        if (endHandler != null) {
             // We should use the HandlerHolder context to properly do this (needs small refactoring)
-            Context endCtx = vertx.getOrCreateContext();
+            Context endCtx = capz.getOrCreateContext();
             this.endHandler = v1 -> endCtx.runOnContext(v2 -> endHandler.handle(null));
         } else {
             this.endHandler = null;
-        }*/
+        }
         return this;
     }
 

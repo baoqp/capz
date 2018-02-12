@@ -1,6 +1,7 @@
 package com.capz.core.eventbus;
 
-import java.nio.Buffer;
+
+import com.capz.core.buffer.Buffer;
 
 // 编解码相关
 public interface MessageCodec<S, R> {

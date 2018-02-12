@@ -1,13 +1,28 @@
 package com.capz.core.eventbus.impl;
 
+import com.capz.core.AsyncResult;
+import com.capz.core.Capz;
+import com.capz.core.CapzInternal;
+import com.capz.core.Closeable;
+import com.capz.core.Context;
+import com.capz.core.Exception.ReplyException;
 import com.capz.core.Handler;
+import com.capz.core.eventbus.DeliveryOptions;
 import com.capz.core.eventbus.EventBus;
+import com.capz.core.eventbus.Message;
+import com.capz.core.eventbus.MessageCodec;
+import com.capz.core.eventbus.MessageConsumer;
+import com.capz.core.eventbus.MessageProducer;
+import com.capz.core.eventbus.ReplyFailure;
 import com.capz.core.eventbus.SendContext;
+import com.capz.core.impl.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -24,15 +39,13 @@ public class EventBusImpl implements EventBus {
     private final List<Handler<SendContext>> interceptors = new CopyOnWriteArrayList<>();
     private final AtomicLong replySequence = new AtomicLong(0);
 
-
     protected final ConcurrentMap<String, Handlers> handlerMap = new ConcurrentHashMap<>();
     protected final CodecManager codecManager = new CodecManager();
     protected volatile boolean started;
+    protected final CapzInternal capzInternal;
 
-    public EventBusImpl(VertxInternal vertx) {
-        VertxMetrics metrics = vertx.metricsSPI();
-        this.vertx = vertx;
-        this.metrics = metrics != null ? metrics.createMetrics(this) : null;
+    public EventBusImpl(CapzInternal capzInternal) {
+        this.capzInternal = capzInternal;
     }
 
     @Override
@@ -71,7 +84,8 @@ public class EventBusImpl implements EventBus {
     }
 
     @Override
-    public <T> EventBus send(String address, Object message, DeliveryOptions options, Handler<AsyncResult<Message<T>>> replyHandler) {
+    public <T> EventBus send(String address, Object message, DeliveryOptions options,
+                             Handler<AsyncResult<Message<T>>> replyHandler) {
         sendOrPubInternal(createMessage(true, address, options.getHeaders(), message, options.getCodecName()), options, replyHandler);
         return this;
     }
@@ -79,27 +93,27 @@ public class EventBusImpl implements EventBus {
     @Override
     public <T> MessageProducer<T> sender(String address) {
         Objects.requireNonNull(address, "address");
-        return new MessageProducerImpl<>(vertx, address, true, new DeliveryOptions());
+        return new MessageProducerImpl<>(capzInternal, address, true, new DeliveryOptions());
     }
 
     @Override
     public <T> MessageProducer<T> sender(String address, DeliveryOptions options) {
         Objects.requireNonNull(address, "address");
         Objects.requireNonNull(options, "options");
-        return new MessageProducerImpl<>(vertx, address, true, options);
+        return new MessageProducerImpl<>(capzInternal, address, true, options);
     }
 
     @Override
     public <T> MessageProducer<T> publisher(String address) {
         Objects.requireNonNull(address, "address");
-        return new MessageProducerImpl<>(vertx, address, false, new DeliveryOptions());
+        return new MessageProducerImpl<>(capzInternal, address, false, new DeliveryOptions());
     }
 
     @Override
     public <T> MessageProducer<T> publisher(String address, DeliveryOptions options) {
         Objects.requireNonNull(address, "address");
         Objects.requireNonNull(options, "options");
-        return new MessageProducerImpl<>(vertx, address, false, options);
+        return new MessageProducerImpl<>(capzInternal, address, false, options);
     }
 
     @Override
@@ -117,7 +131,7 @@ public class EventBusImpl implements EventBus {
     public <T> MessageConsumer<T> consumer(String address) {
         checkStarted();
         Objects.requireNonNull(address, "address");
-        return new HandlerRegistration<>(vertx, metrics, this, address, null, false, null, -1);
+        return new HandlerRegistration<>(capzInternal, this, address, null, false, null, -1);
     }
 
     @Override
@@ -132,7 +146,7 @@ public class EventBusImpl implements EventBus {
     public <T> MessageConsumer<T> localConsumer(String address) {
         checkStarted();
         Objects.requireNonNull(address, "address");
-        return new HandlerRegistration<>(vertx, metrics, this, address, null, true, null, -1);
+        return new HandlerRegistration<>(capzInternal, this, address, null, true, null, -1);
     }
 
     @Override
@@ -171,25 +185,14 @@ public class EventBusImpl implements EventBus {
     public void close(Handler<AsyncResult<Void>> completionHandler) {
         checkStarted();
         unregisterAll();
-        if (metrics != null) {
-            metrics.close();
-        }
+
         if (completionHandler != null) {
-            vertx.runOnContext(v -> completionHandler.handle(Future.succeededFuture()));
+            capzInternal.runOnContext(v -> completionHandler.handle(Future.succeededFuture()));
         }
     }
 
-    @Override
-    public boolean isMetricsEnabled() {
-        return metrics != null;
-    }
 
-    @Override
-    public EventBusMetrics<?> getMetrics() {
-        return metrics;
-    }
-
-    protected MessageImpl createMessage(boolean send, String address, MultiMap headers, Object body, String codecName) {
+    protected MessageImpl createMessage(boolean send, String address, Map<String, HashSet<String>> headers, Object body, String codecName) {
         Objects.requireNonNull(address, "no null address accepted");
         MessageCodec codec = codecManager.lookupCodec(body, codecName);
         @SuppressWarnings("unchecked")
@@ -214,17 +217,17 @@ public class EventBusImpl implements EventBus {
                                                boolean replyHandler, boolean localOnly) {
         Objects.requireNonNull(address, "address");
 
-        Context context = Vertx.currentContext();
+        Context context = Capz.currentContext();
         boolean hasContext = context != null;
         if (!hasContext) {
             // Embedded
-            context = vertx.getOrCreateContext();
+            context = capzInternal.getOrCreateContext();
         }
         registration.setHandlerContext(context);
 
         boolean newAddress = false;
 
-        HandlerHolder holder = new HandlerHolder<>(metrics, registration, replyHandler, localOnly, context);
+        HandlerHolder holder = new HandlerHolder<>(registration, replyHandler, localOnly, context);
 
         Handlers handlers = handlerMap.get(address);
         if (handlers == null) {
@@ -239,7 +242,7 @@ public class EventBusImpl implements EventBus {
 
         if (hasContext) {
             HandlerEntry entry = new HandlerEntry<>(address, registration);
-            context.addCloseHook(entry);
+            //context.addCloseHook(entry);
         }
 
         return newAddress;
@@ -272,7 +275,7 @@ public class EventBusImpl implements EventBus {
                             handlerMap.remove(address);
                             lastHolder = holder;
                         }
-                        holder.getContext().removeCloseHook(new HandlerEntry<>(address, holder.getHandler()));
+                        //holder.getContext().removeCloseHook(new HandlerEntry<>(address, holder.getHandler()));
                         break;
                     }
                 }
@@ -297,9 +300,7 @@ public class EventBusImpl implements EventBus {
 
     protected <T> void sendOrPub(SendContextImpl<T> sendContext) {
         MessageImpl message = sendContext.message;
-        if (metrics != null) {
-            metrics.messageSent(message.address(), !message.isSend(), true, false);
-        }
+
         deliverMessageLocally(sendContext);
     }
 
@@ -309,9 +310,7 @@ public class EventBusImpl implements EventBus {
             if (reply.body() instanceof ReplyException) {
                 // This is kind of clunky - but hey-ho
                 ReplyException exception = (ReplyException) reply.body();
-                if (metrics != null) {
-                    metrics.replyFailure(reply.address(), exception.failureType());
-                }
+
                 result = Future.failedFuture(exception);
             } else {
                 result = Future.succeededFuture(reply);
@@ -322,7 +321,7 @@ public class EventBusImpl implements EventBus {
 
     protected void callCompletionHandlerAsync(Handler<AsyncResult<Void>> completionHandler) {
         if (completionHandler != null) {
-            vertx.runOnContext(v -> {
+            capzInternal.runOnContext(v -> {
                 completionHandler.handle(Future.succeededFuture());
             });
         }
@@ -331,12 +330,10 @@ public class EventBusImpl implements EventBus {
     protected <T> void deliverMessageLocally(SendContextImpl<T> sendContext) {
         if (!deliverMessageLocally(sendContext.message)) {
             // no handlers
-            if (metrics != null) {
-                metrics.replyFailure(sendContext.message.address, ReplyFailure.NO_HANDLERS);
-            }
+
             if (sendContext.handlerRegistration != null) {
-                sendContext.handlerRegistration.sendAsyncResultFailure(ReplyFailure.NO_HANDLERS, "No handlers for address "
-                        + sendContext.message.address);
+                sendContext.handlerRegistration.sendAsyncResultFailure(ReplyFailure.NO_HANDLERS,
+                        "No handlers for address " + sendContext.message.address);
             }
         }
     }
@@ -352,26 +349,20 @@ public class EventBusImpl implements EventBus {
             if (msg.isSend()) {
                 //Choose one
                 HandlerHolder holder = handlers.choose();
-                if (metrics != null) {
-                    metrics.messageReceived(msg.address(), !msg.isSend(), isMessageLocal(msg), holder != null ? 1 : 0);
-                }
+
                 if (holder != null) {
                     deliverToHandler(msg, holder);
                 }
             } else {
                 // Publish
-                if (metrics != null) {
-                    metrics.messageReceived(msg.address(), !msg.isSend(), isMessageLocal(msg), handlers.list.size());
-                }
+
                 for (HandlerHolder holder : handlers.list) {
                     deliverToHandler(msg, holder);
                 }
             }
             return true;
         } else {
-            if (metrics != null) {
-                metrics.messageReceived(msg.address(), !msg.isSend(), isMessageLocal(msg), 0);
-            }
+
             return false;
         }
     }
@@ -390,12 +381,12 @@ public class EventBusImpl implements EventBus {
                                                                       DeliveryOptions options,
                                                                       Handler<AsyncResult<Message<T>>> replyHandler) {
         if (replyHandler != null) {
-            long timeout = options.getSendTimeout();
+            long timeout = options.getTimeout();
             String replyAddress = generateReplyAddress();
             message.setReplyAddress(replyAddress);
             Handler<Message<T>> simpleReplyHandler = convertHandler(replyHandler);
             HandlerRegistration<T> registration =
-                    new HandlerRegistration<>(vertx, metrics, this, replyAddress, message.address, true, replyHandler, timeout);
+                    new HandlerRegistration(capzInternal, this, replyAddress, message.address, true, replyHandler, timeout);
             registration.handler(simpleReplyHandler);
             return registration;
         } else {
@@ -491,10 +482,6 @@ public class EventBusImpl implements EventBus {
         @SuppressWarnings("unchecked")
         Message<T> copied = msg.copyBeforeReceive();
 
-        if (metrics != null) {
-            metrics.scheduleMessage(holder.getHandler().getMetric(), msg.isLocal());
-        }
-
         holder.getContext().runOnContext((v) -> {
             // Need to check handler is still there - the handler might have been removed after the message were sent but
             // before it was received
@@ -546,9 +533,6 @@ public class EventBusImpl implements EventBus {
 
     @Override
     protected void finalize() throws Throwable {
-        // Make sure this gets cleaned up if there are no more references to it
-        // so as not to leave connections and resources dangling until the system is shutdown
-        // which could make the JVM run out of file handles.
         close(ar -> {
         });
         super.finalize();

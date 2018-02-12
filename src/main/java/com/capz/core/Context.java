@@ -1,23 +1,27 @@
 package com.capz.core;
 
+import com.capz.core.impl.AbstractContext;
+import com.capz.core.impl.Future;
+
 import java.util.List;
+
 
 // 上下文
 public interface Context {
 
 
     static boolean isOnWorkerThread() {
-        return ContextImpl.isOnWorkerThread();
+        return AbstractContext.isOnWorkerThread();
     }
 
 
     static boolean isOnEventLoopThread() {
-        return ContextImpl.isOnEventLoopThread();
+        return AbstractContext.isOnEventLoopThread();
     }
 
 
     static boolean isOnCapzThread() {
-        return ContextImpl.isOnVertxThread();
+        return AbstractContext.isOnCapzThread();
     }
 
 
@@ -33,7 +37,7 @@ public interface Context {
     String deploymentID();
 
 
-    List<String> processArgs();
+    //List<String> processArgs();
 
 
     boolean isEventLoopContext();
@@ -57,15 +61,12 @@ public interface Context {
     Capz owner();
 
 
-    int getInstanceCount();
-
-
     Context exceptionHandler(Handler<Throwable> handler);
 
 
-    void addCloseHook(Closeable hook);
+/*    void addCloseHook(Closeable hook);
 
 
-    void removeCloseHook(Closeable hook);
+    void removeCloseHook(Closeable hook);*/
 
 }
