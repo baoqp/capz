@@ -5,11 +5,7 @@ import com.capz.core.impl.CapzFactory;
 import com.capz.core.impl.Future;
 import io.netty.channel.EventLoopGroup;
 
-/**
- * Capz -> capsule
- *
- * @author Bao Qingping
- */
+
 public interface Capz {
 
     Context getOrCreateContext();
@@ -27,22 +23,15 @@ public interface Capz {
 
     <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, Handler<AsyncResult<T>> resultHandler);
 
-    /**
-     * Set a one-shot timer to fire after delay milliseconds, at which point handler will be called
-     */
+
     long setTimer(long delay, Handler<Long> handler);
 
-    /**
-     * Set a periodic timer to fire every delay milliseconds, at which point handler will be called
-     */
+
     long setPeriodic(long delay, Handler<Long> handler);
 
     boolean cancelTimer(long id);
 
-    /**
-     * Puts the handler on the event queue for the current context so it will be run asynchronously ASAP after all
-     * preceeding events have been handled.
-     */
+
     void runOnContext(Handler<Void> action);
 
     void close();
@@ -50,9 +39,17 @@ public interface Capz {
     void close(Handler<AsyncResult<Void>> completionHandler);
 
 
-    EventLoopGroup nettyEventLoopGroup();
-
     Handler<Throwable> exceptionHandler();
 
     CapzFactory factory = new CapzFactory();
+
+
+    EventLoopGroup nettyEventLoopGroup();
+
+    // 创建线程池
+    WorkerExecutor createSharedWorkerExecutor(String name);
+
+    WorkerExecutor createSharedWorkerExecutor(String name, int poolSize);
+
+    WorkerExecutor createSharedWorkerExecutor(String name, int poolSize, long maxExecuteTime);
 }

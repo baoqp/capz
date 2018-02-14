@@ -3,19 +3,21 @@ package com.capz.core.impl;
 import com.capz.core.CapzInternal;
 import com.capz.core.ContextTask;
 import com.capz.core.Handler;
+import com.capz.core.WorkerExecutor;
+import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 
 import java.util.concurrent.ExecutorService;
 
 public class WorkerContext extends AbstractContext {
 
-    public WorkerContext(CapzInternal capzInternal, ExecutorService internalBlockingPool, ExecutorService workerPool, String deploymentID,
+    public WorkerContext(CapzInternal capzInternal, WorkerExecutor internalBlockingPool, WorkerExecutor workerPool, String deploymentID,
                          ClassLoader tccl) {
         super(capzInternal, internalBlockingPool, workerPool, deploymentID, tccl);
     }
 
     @Override
     public void executeAsync(Handler<Void> task) {
-        orderedTasks.execute(wrapTask(null, task, true), workerPool);
+        orderedTasks.execute(wrapTask(null, task, true), workerPool.getExecutorService());
     }
 
     @Override
@@ -37,7 +39,7 @@ public class WorkerContext extends AbstractContext {
     // so we need to execute it on the worker thread
     @Override
     public void executeFromIO(ContextTask task) {
-        orderedTasks.execute(wrapTask(task, null, true), workerPool);
+        orderedTasks.execute(wrapTask(task, null, true), workerPool.getExecutorService());
     }
 
 }

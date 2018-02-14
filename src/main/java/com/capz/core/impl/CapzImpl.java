@@ -1,13 +1,6 @@
 package com.capz.core.impl;
 
-import com.capz.core.Action;
-import com.capz.core.AsyncResult;
-import com.capz.core.Capz;
-import com.capz.core.CapzInternal;
-import com.capz.core.CapzOptions;
-import com.capz.core.Closeable;
-import com.capz.core.Context;
-import com.capz.core.Handler;
+import com.capz.core.*;
 import com.capz.core.eventbus.EventBus;
 import com.capz.core.eventbus.impl.EventBusImpl;
 import io.netty.channel.EventLoop;
@@ -47,8 +40,8 @@ public class CapzImpl implements CapzInternal {
 
     private final ConcurrentMap<Long, InternalTimerHandler> timeouts = new ConcurrentHashMap<>();
     private final AtomicLong timeoutCounter = new AtomicLong(0);
-    final ExecutorService workerPool;
-    final ExecutorService internalBlockingPool;
+    final WorkerExecutor workerPool;
+    final WorkerExecutor internalBlockingPool;
     private final ThreadFactory eventLoopThreadFactory;
     private final NioEventLoopGroup eventLoopGroup;
     private final NioEventLoopGroup acceptorEventLoopGroup;
@@ -56,9 +49,11 @@ public class CapzImpl implements CapzInternal {
     private EventBus eventBus;
     private boolean closed;
     private volatile Handler<Throwable> exceptionHandler;
-    private final Map<String, ExecutorService> namedWorkerPools;
+    private final Map<String, SharedWorkerPool> namedWorkerPools;
     private final int defaultWorkerPoolSize;
     private final long defaultWorkerMaxExecTime;
+
+    private DeploymentManager deploymentManager;
 
 
     public CapzImpl() {
@@ -80,21 +75,21 @@ public class CapzImpl implements CapzInternal {
         eventLoopGroup = new NioEventLoopGroup(options.getEventLoopPoolSize(), eventLoopThreadFactory);
         eventLoopGroup.setIoRatio(NETTY_IO_RATIO);
         ThreadFactory acceptorEventLoopThreadFactory = new CapzThreadFactory("capz-acceptor-thread-", checker, false, options.getMaxEventLoopExecuteTime());
-        // The acceptor event loop thread needs to be from a different pool otherwise can get lags in accepted connections
-        // under a lot of load
+
         acceptorEventLoopGroup = new NioEventLoopGroup(1, acceptorEventLoopThreadFactory);
         acceptorEventLoopGroup.setIoRatio(100);
 
         ExecutorService workerExec = Executors.newFixedThreadPool(options.getWorkerPoolSize(),
                 new CapzThreadFactory("capz-worker-thread-", checker, true, options.getMaxWorkerExecuteTime()));
-
         ExecutorService internalBlockingExec = Executors.newFixedThreadPool(options.getInternalBlockingPoolSize(),
                 new CapzThreadFactory("capz-internal-blocking-", checker, true, options.getMaxWorkerExecuteTime()));
-        internalBlockingPool = internalBlockingExec;
+        internalBlockingPool = new WorkerExecutorImpl(this, internalBlockingExec, true);
         namedWorkerPools = new HashMap<>();
-        workerPool = workerExec;
+        workerPool = new WorkerExecutorImpl(this, workerExec, true);
         defaultWorkerPoolSize = options.getWorkerPoolSize();
         defaultWorkerMaxExecTime = options.getMaxWorkerExecuteTime();
+
+        deploymentManager = new DeploymentManager(this);
 
         createAndStartEventBus(options, resultHandler);
 
@@ -138,7 +133,7 @@ public class CapzImpl implements CapzInternal {
     }
 
     // The background pool is used for making blocking calls to legacy synchronous APIs
-    public ExecutorService getWorkerPool() {
+    public WorkerExecutor getWorkerPool() {
         return workerPool;
     }
 
@@ -169,13 +164,17 @@ public class CapzImpl implements CapzInternal {
         }
     }
 
-    public EventLoopContext createEventLoopContext(String deploymentID, ExecutorService workerPool, ClassLoader tccl) {
+    @Override
+    public EventLoopContext createEventLoopContext(String deploymentID, WorkerExecutor workerPool,
+                                                   ClassLoader tccl) {
         return new EventLoopContext(this, internalBlockingPool, workerPool != null ? workerPool : this.workerPool, deploymentID, tccl);
     }
 
-    public AbstractContext createWorkerContext(boolean multiThreaded, String deploymentID, ExecutorService workerPool, ClassLoader tccl) {
-        if (workerPool == null) {
-            workerPool = this.workerPool;
+    @Override
+    public AbstractContext createWorkerContext(boolean multiThreaded, String deploymentID,
+                                               WorkerExecutor pool, ClassLoader tccl) {
+        if (pool == null) {
+            pool = this.workerPool;
         }
         if (multiThreaded) {
             return new MultiThreadedWorkerContext(this, internalBlockingPool, workerPool, deploymentID, tccl);
@@ -268,7 +267,6 @@ public class CapzImpl implements CapzInternal {
 
         boolean cancel() {
             if (cancelled.compareAndSet(false, true)) {
-
                 future.cancel(false);
                 return true;
             } else {
@@ -276,7 +274,8 @@ public class CapzImpl implements CapzInternal {
             }
         }
 
-        InternalTimerHandler(long timerID, Handler<Long> runnable, boolean periodic, long delay, AbstractContext context) {
+        InternalTimerHandler(long timerID, Handler<Long> runnable, boolean periodic,
+                             long delay, AbstractContext context) {
             this.context = context;
             this.timerID = timerID;
             this.handler = runnable;
@@ -334,5 +333,63 @@ public class CapzImpl implements CapzInternal {
         return exceptionHandler;
     }
 
+
+    @Override
+    public WorkerExecutorImpl createSharedWorkerExecutor(String name) {
+        return createSharedWorkerExecutor(name, defaultWorkerPoolSize);
+    }
+
+    @Override
+    public WorkerExecutorImpl createSharedWorkerExecutor(String name, int poolSize) {
+        return createSharedWorkerExecutor(name, poolSize, defaultWorkerMaxExecTime);
+    }
+
+    // TODO 返回值
+    @Override
+    public synchronized WorkerExecutorImpl createSharedWorkerExecutor(String name, int poolSize, long maxExecuteTime) {
+        if (poolSize < 1) {
+            throw new IllegalArgumentException("poolSize must be > 0");
+        }
+        if (maxExecuteTime < 1) {
+            throw new IllegalArgumentException("maxExecuteTime must be > 0");
+        }
+        SharedWorkerPool sharedWorkerPool = namedWorkerPools.get(name);
+        if (sharedWorkerPool == null) {
+            ExecutorService workerExec = Executors.newFixedThreadPool(poolSize,
+                    new CapzThreadFactory(name + "-", checker, true, maxExecuteTime));
+            namedWorkerPools.put(name, sharedWorkerPool = new SharedWorkerPool(this, workerExec, true, name));
+        } else {
+            sharedWorkerPool.refCount++;
+        }
+        AbstractContext context = getOrCreateContext();
+        //context.addCloseHook(sharedWorkerPool);
+        return sharedWorkerPool;
+    }
+
+
+    class SharedWorkerPool extends WorkerExecutorImpl {
+
+        private final String name;
+        private int refCount = 1;
+
+        SharedWorkerPool(Capz capz, ExecutorService executorService,
+                         boolean releaseOnClose, String name) {
+            super(capz, executorService, releaseOnClose);
+            this.name = name;
+        }
+
+        void release() {
+            synchronized (CapzImpl.this) {
+                if (--refCount == 0) {
+                    releaseWorkerExecutor(name);
+                    super.close(null);
+                }
+            }
+        }
+    }
+
+    synchronized void releaseWorkerExecutor(String name) {
+        namedWorkerPools.remove(name);
+    }
 
 }

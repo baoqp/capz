@@ -23,7 +23,7 @@ public class IsolatingClassLoader extends URLClassLoader {
             if (c == null) {
                 if (isIsolatedClass(name)) {
                     // We don't want to load Vert.x (or Vert.x dependency) classes from an isolating loader
-                    if (isVertxOrSystemClass(name)) {
+                    if (isCapzOrSystemClass(name)) {
                         try {
                             c = getParent().loadClass(name);
                         } catch (ClassNotFoundException e) {
@@ -70,9 +70,7 @@ public class IsolatingClassLoader extends URLClassLoader {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public URL getResource(String name) {
 
@@ -87,9 +85,7 @@ public class IsolatingClassLoader extends URLClassLoader {
         return url;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public Enumeration<URL> getResources(String name) throws IOException {
 
@@ -107,14 +103,14 @@ public class IsolatingClassLoader extends URLClassLoader {
         return Collections.enumeration(resources);
     }
 
-    private boolean isVertxOrSystemClass(String name) {
+    private boolean isCapzOrSystemClass(String name) {
         return
                 name.startsWith("java.") ||
                         name.startsWith("javax.") ||
                         name.startsWith("sun.*") ||
                         name.startsWith("com.sun.") ||
-                        name.startsWith("io.vertx.core") ||
+                        name.startsWith("com.capz.core") ||
                         name.startsWith("io.netty.") ||
-                        name.startsWith("com.fasterxml.jackson");
+                        name.startsWith("com.alibaba.fastjson");
     }
 }

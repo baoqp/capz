@@ -1,15 +1,11 @@
 package com.capz.core.impl;
 
-import com.capz.core.Action;
-import com.capz.core.AsyncResult;
-import com.capz.core.CapzInternal;
-import com.capz.core.Context;
-import com.capz.core.ContextInternal;
-import com.capz.core.ContextTask;
-import com.capz.core.Handler;
+import com.capz.core.*;
 import com.sun.corba.se.impl.corba.ContextImpl;
 import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +28,6 @@ public abstract class AbstractContext implements ContextInternal {
         }
     }
 
-
     private static final String THREAD_CHECKS_PROP_NAME = "capz.threadChecks";
     private static final String DISABLE_TIMINGS_PROP_NAME = "capz.disableContextTimings";
     private static final String DISABLE_TCCL_PROP_NAME = "capz.disableTCCL";
@@ -42,25 +37,27 @@ public abstract class AbstractContext implements ContextInternal {
 
     protected final CapzInternal owner;
     protected final String deploymentID;
-
+    @Getter
+    @Setter
+    private Deployment deployment;
 
     private final ClassLoader tccl;
     private final EventLoop eventLoop;
     protected CapzThread contextThread;
     private ConcurrentMap<Object, Object> contextData;
     private volatile Handler<Throwable> exceptionHandler;
-    protected final ExecutorService workerPool;
-    protected final ExecutorService internalBlockingPool;
+    protected final WorkerExecutor workerPool;
+    protected final WorkerExecutor internalBlockingPool;
     final TaskQueue orderedTasks;
     protected final TaskQueue internalOrderedTasks;
 
-    protected AbstractContext(CapzInternal capzInternal, ExecutorService internalBlockingPool,
-                              ExecutorService workerPool, String deploymentID, ClassLoader tccl) {
+    protected AbstractContext(CapzInternal capzInternal, WorkerExecutor internalBlockingPool,
+                              WorkerExecutor workerPool, String deploymentID, ClassLoader tccl) {
         this(capzInternal, getEventLoop(capzInternal), internalBlockingPool, workerPool, deploymentID, tccl);
     }
 
-    protected AbstractContext(CapzInternal capzInternal, EventLoop eventLoop, ExecutorService internalBlockingPool,
-                              ExecutorService workerPool, String deploymentID, ClassLoader tccl) {
+    protected AbstractContext(CapzInternal capzInternal, EventLoop eventLoop, WorkerExecutor internalBlockingPool,
+                              WorkerExecutor workerPool, String deploymentID, ClassLoader tccl) {
         if (DISABLE_TCCL && !tccl.getClass().getName().equals("sun.misc.Launcher$AppClassLoader")) {
             log.warn("You have disabled TCCL checks but you have a custom TCCL to set.");
         }
@@ -185,22 +182,31 @@ public abstract class AbstractContext implements ContextInternal {
 
     // Execute an internal task on the internal blocking ordered executor
     public <T> void executeBlocking(Action<T> action, Handler<AsyncResult<T>> resultHandler) {
-        executeBlocking(action, null, resultHandler, internalBlockingPool, internalOrderedTasks);
+        executeBlocking(action, null, resultHandler,
+                internalBlockingPool.getExecutorService(), internalOrderedTasks);
     }
 
-    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, Handler<AsyncResult<T>> resultHandler) {
+    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler,
+                                    Handler<AsyncResult<T>> resultHandler) {
+
         executeBlocking(blockingCodeHandler, true, resultHandler);
     }
 
     @Override
-    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, boolean ordered, Handler<AsyncResult<T>> resultHandler) {
-        executeBlocking(null, blockingCodeHandler, resultHandler, workerPool, ordered ? orderedTasks : null);
+    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, boolean ordered,
+                                    Handler<AsyncResult<T>> resultHandler) {
+
+        executeBlocking(null, blockingCodeHandler, resultHandler,
+                workerPool.getExecutorService(), ordered ? orderedTasks : null);
     }
 
 
     @Override
-    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, TaskQueue queue, Handler<AsyncResult<T>> resultHandler) {
-        executeBlocking(null, blockingCodeHandler, resultHandler, workerPool, queue);
+    public <T> void executeBlocking(Handler<Future<T>> blockingCodeHandler, TaskQueue queue,
+                                    Handler<AsyncResult<T>> resultHandler) {
+
+        executeBlocking(null, blockingCodeHandler, resultHandler,
+                workerPool.getExecutorService(), queue);
     }
 
     <T> void executeBlocking(Action<T> action, Handler<Future<T>> blockingCodeHandler,
@@ -258,14 +264,18 @@ public abstract class AbstractContext implements ContextInternal {
         return () -> {
             Thread th = Thread.currentThread();
             if (!(th instanceof CapzThread)) {
-                throw new IllegalStateException("Uh oh! Event loop context executing with wrong thread! Expected " + contextThread + " got " + th);
+                throw new IllegalStateException(
+                        "Uh oh! Event loop context executing with wrong thread! Expected "
+                                + contextThread + " got " + th);
             }
             CapzThread current = (CapzThread) th;
             if (THREAD_CHECKS && checkThread) {
                 if (contextThread == null) {
                     contextThread = current;
                 } else if (contextThread != current && !contextThread.isWorker()) {
-                    throw new IllegalStateException("Uh oh! Event loop context executing with wrong thread! Expected " + contextThread + " got " + current);
+                    throw new IllegalStateException(
+                            "Uh oh! Event loop context executing with wrong thread! Expected "
+                                    + contextThread + " got " + current);
                 }
             }
 

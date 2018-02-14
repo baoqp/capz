@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager> {
+
     private final Map<String, ByteArrayOutputStream> compiledClasses = new HashMap<>();
     private final PackageHelper helper;
 
@@ -26,10 +27,10 @@ public class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager
 
     @Override
     public JavaFileObject getJavaFileForOutput(Location location, final String className,
-                                               JavaFileObject.Kind kind, FileObject sibling) throws IOException {
+                                               JavaFileObject.Kind kind, FileObject sibling) {
         try {
             return new SimpleJavaFileObject(new URI(""), kind) {
-                public OutputStream openOutputStream() throws IOException {
+                public OutputStream openOutputStream()  {
                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                     compiledClasses.put(className, outputStream);
                     return outputStream;

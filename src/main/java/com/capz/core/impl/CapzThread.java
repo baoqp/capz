@@ -7,6 +7,7 @@ import lombok.Setter;
 /**
  * @author Bao Qingping
  */
+
 @Setter
 @Getter
 public class CapzThread extends FastThreadLocalThread {
@@ -30,9 +31,11 @@ public class CapzThread extends FastThreadLocalThread {
         execStart = 0;
     }
 
-
     public long startTime() {
         return execStart;
     }
 
+    public boolean isWorker() {
+        return worker;
+    }
 }

@@ -2,15 +2,7 @@
 package com.capz.core.impl;
 
 
-import com.capz.core.AsyncResult;
-import com.capz.core.Capsule;
-import com.capz.core.CapsuleFactory;
-import com.capz.core.CapzInternal;
-import com.capz.core.Context;
-import com.capz.core.Deployment;
-import com.capz.core.DeploymentOptions;
-import com.capz.core.Handler;
-import com.capz.core.ServiceHelper;
+import com.capz.core.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,18 +10,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.WeakHashMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -64,7 +45,8 @@ public class DeploymentManager {
         return UUID.randomUUID().toString();
     }
 
-    public void deployCapsule(Supplier<Capsule> CapsuleSupplier, DeploymentOptions options, Handler<AsyncResult<String>> completionHandler) {
+    public void deployCapsule(Supplier<Capsule> CapsuleSupplier, DeploymentOptions options,
+                              Handler<AsyncResult<String>> completionHandler) {
         if (options.getInstances() < 1) {
             throw new IllegalArgumentException("Can't specify < 1 instances to deploy");
         }
@@ -290,7 +272,7 @@ public class DeploymentManager {
         }
         facts.add(factory);
         // Sort list in ascending order
-        facts.sort((fact1, fact2) -> fact1.order() - fact2.order());
+        facts.sort(Comparator.comparing(CapsuleFactory::order));
         factory.init(capz);
     }
 
@@ -440,25 +422,27 @@ public class DeploymentManager {
     }
 
     private void doDeploy(String identifier, String deploymentID, DeploymentOptions options,
-                          Context parentContext,
-                          Context callingContext,
+                          AbstractContext parentContext,
+                          AbstractContext callingContext,
                           Handler<AsyncResult<String>> completionHandler,
                           ClassLoader tccl, Capsule... Capsules) {
 
         String poolName = options.getWorkerPoolName();
-
         Deployment parent = parentContext.getDeployment();
         DeploymentImpl deployment = new DeploymentImpl(parent, deploymentID, identifier, options);
 
         AtomicInteger deployCount = new AtomicInteger();
         AtomicBoolean failureReported = new AtomicBoolean();
         for (Capsule Capsule : Capsules) {
-            WorkerExecutorImpl workerExec = poolName != null ? capz.createSharedWorkerExecutor(poolName, options.getWorkerPoolSize(), options.getMaxWorkerExecuteTime()) : null;
-            WorkerPool pool = workerExec != null ? workerExec.getPool() : null;
-            AbstractContext context = options.isWorker() ? capz.createWorkerContext(options.isMultiThreaded(), deploymentID, pool, conf, tccl) :
-                    capz.createEventLoopContext(deploymentID, pool, conf, tccl);
+            WorkerExecutor workerExec = poolName != null ?
+                    capz.createSharedWorkerExecutor(poolName, options.getWorkerPoolSize(), options.getMaxWorkerExecuteTime()) : null;
+
+            AbstractContext context = options.isWorker() ?
+                    capz.createWorkerContext(options.isMultiThreaded(), deploymentID, workerExec, tccl) :
+                    capz.createEventLoopContext(deploymentID, workerExec, tccl);
+
             if (workerExec != null) {
-                context.addCloseHook(workerExec);
+               // context.addCloseHook(workerExec);
             }
             context.setDeployment(deployment);
             deployment.addCapsule(new CapsuleHolder(Capsule, context));
@@ -478,10 +462,7 @@ public class DeploymentManager {
                                     return;
                                 }
                             }
-                            capzMetrics metrics = capz.metricsSPI();
-                            if (metrics != null) {
-                                metrics.CapsuleDeployed(Capsule);
-                            }
+
                             deployments.put(deploymentID, deployment);
                             if (deployCount.incrementAndGet() == Capsules.length) {
                                 reportSuccess(deploymentID, callingContext, completionHandler);
@@ -499,11 +480,11 @@ public class DeploymentManager {
     }
 
     static class CapsuleHolder {
-        final Capsule Capsule;
+        final Capsule capsule;
         final AbstractContext context;
 
-        CapsuleHolder(Capsule Capsule, AbstractContext context) {
-            this.Capsule = Capsule;
+        CapsuleHolder(Capsule capsule, AbstractContext context) {
+            this.capsule = capsule;
             this.context = context;
         }
     }
@@ -514,17 +495,17 @@ public class DeploymentManager {
 
         private final Deployment parent;
         private final String deploymentID;
-        private final String CapsuleIdentifier;
+        private final String capsuleIdentifier;
         private final List<CapsuleHolder> Capsules = new CopyOnWriteArrayList<>();
         private final Set<Deployment> children = new ConcurrentHashSet<>();
         private final DeploymentOptions options;
         private int status = ST_DEPLOYED;
         private volatile boolean child;
 
-        private DeploymentImpl(Deployment parent, String deploymentID, String CapsuleIdentifier, DeploymentOptions options) {
+        private DeploymentImpl(Deployment parent, String deploymentID, String capsuleIdentifier, DeploymentOptions options) {
             this.parent = parent;
             this.deploymentID = deploymentID;
-            this.CapsuleIdentifier = CapsuleIdentifier;
+            this.capsuleIdentifier = capsuleIdentifier;
             this.options = options;
         }
 
@@ -532,7 +513,8 @@ public class DeploymentManager {
             Capsules.add(holder);
         }
 
-        private synchronized void rollback(AbstractContext callingContext, Handler<AsyncResult<String>> completionHandler, AbstractContext context, Throwable cause) {
+        private synchronized void rollback(AbstractContext callingContext, Handler<AsyncResult<String>> completionHandler,
+                                           AbstractContext context, Throwable cause) {
             if (status == ST_DEPLOYED) {
                 status = ST_UNDEPLOYING;
                 doUndeployChildren(callingContext, childrenResult -> {
@@ -542,7 +524,7 @@ public class DeploymentManager {
                     if (childrenResult.failed()) {
                         reportFailure(cause, callingContext, completionHandler);
                     } else {
-                        context.runCloseHooks(closeHookAsyncResult -> reportFailure(cause, callingContext, completionHandler));
+                        //context.runCloseHooks(closeHookAsyncResult -> reportFailure(cause, callingContext, completionHandler));
                     }
                 });
             }
@@ -554,7 +536,8 @@ public class DeploymentManager {
             doUndeploy(currentContext, completionHandler);
         }
 
-        private synchronized void doUndeployChildren(AbstractContext undeployingContext, Handler<AsyncResult<Void>> completionHandler) {
+        private synchronized void doUndeployChildren(AbstractContext undeployingContext,
+                                                     Handler<AsyncResult<Void>> completionHandler) {
             if (!children.isEmpty()) {
                 final int size = children.size();
                 AtomicInteger childCount = new AtomicInteger();
@@ -580,7 +563,8 @@ public class DeploymentManager {
             }
         }
 
-        public synchronized void doUndeploy(AbstractContext undeployingContext, Handler<AsyncResult<Void>> completionHandler) {
+        public synchronized void doUndeploy(AbstractContext undeployingContext,
+                                            Handler<AsyncResult<Void>> completionHandler) {
             if (status == ST_UNDEPLOYED) {
                 reportFailure(new IllegalStateException("Already undeployed"), undeployingContext, completionHandler);
                 return;
@@ -605,22 +589,9 @@ public class DeploymentManager {
                         AtomicBoolean failureReported = new AtomicBoolean();
                         stopFuture.setHandler(ar -> {
                             deployments.remove(deploymentID);
-
-                            /*context.runCloseHooks(ar2 -> {
-                                if (ar2.failed()) {
-                                    // Log error but we report success anyway
-                                    log.error("Failed to run close hook", ar2.cause());
-                                }
-                                if (ar.succeeded() && undeployCount.incrementAndGet() == numToUndeploy) {
-                                    reportSuccess(null, undeployingContext, completionHandler);
-                                } else if (ar.failed() && !failureReported.get()) {
-                                    failureReported.set(true);
-                                    reportFailure(ar.cause(), undeployingContext, completionHandler);
-                                }
-                            });*/
                         });
                         try {
-                            CapsuleHolder.Capsule.stop(stopFuture);
+                            CapsuleHolder.capsule.stop(stopFuture);
                         } catch (Throwable t) {
                             stopFuture.fail(t);
                         } finally {
@@ -635,8 +606,8 @@ public class DeploymentManager {
         }
 
         @Override
-        public String CapsuleIdentifier() {
-            return CapsuleIdentifier;
+        public String capsuleIdentifier() {
+            return capsuleIdentifier;
         }
 
         @Override
@@ -661,11 +632,11 @@ public class DeploymentManager {
 
         @Override
         public Set<Capsule> getCapsules() {
-            Set<Capsule> verts = new HashSet<>();
+            Set<Capsule> capsules = new HashSet<>();
             for (CapsuleHolder holder : Capsules) {
-                verts.add(holder.Capsule);
+                capsules.add(holder.capsule);
             }
-            return verts;
+            return capsules;
         }
 
         @Override

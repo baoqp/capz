@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.jar.JarEntry;
 
 public class PackageHelper {
+
     private final static String CLASS_FILE = ".class";
 
     private final ClassLoader classLoader;
@@ -24,6 +25,7 @@ public class PackageHelper {
     }
 
     public List<JavaFileObject> find(String packageName) throws IOException {
+
         String javaPackageName = packageName.replaceAll("\\.", "/");
 
         List<JavaFileObject> result = new ArrayList<>();

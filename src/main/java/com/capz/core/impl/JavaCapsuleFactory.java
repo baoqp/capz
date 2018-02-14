@@ -15,7 +15,7 @@ public class JavaCapsuleFactory implements CapsuleFactory {
     }
 
     @Override
-    public Capsule createVerticle(String capsuleName, ClassLoader classLoader) throws Exception {
+    public Capsule createCapsule(String capsuleName, ClassLoader classLoader) throws Exception {
         capsuleName = CapsuleFactory.removePrefix(capsuleName);
         Class clazz;
         if (capsuleName.endsWith(".java")) {

@@ -2,23 +2,22 @@ package com.capz.core.impl;
 
 import com.capz.core.CapzInternal;
 import com.capz.core.Handler;
+import com.capz.core.WorkerExecutor;
 import io.netty.channel.EventLoop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.ExecutorService;
 
 public class EventLoopContext extends AbstractContext {
 
     private static final Logger log = LoggerFactory.getLogger(EventLoopContext.class);
 
-    public EventLoopContext(CapzInternal capzInternal, ExecutorService internalBlockingPool, ExecutorService workerPool,
-                            String deploymentID, ClassLoader tccl) {
+    public EventLoopContext(CapzInternal capzInternal, WorkerExecutor internalBlockingPool,
+                            WorkerExecutor workerPool, String deploymentID, ClassLoader tccl) {
         super(capzInternal, internalBlockingPool, workerPool, deploymentID, tccl);
     }
 
-    public EventLoopContext(CapzInternal capzInternal, EventLoop eventLoop, ExecutorService internalBlockingPool,
-                            ExecutorService workerPool, String deploymentID, ClassLoader tccl) {
+    public EventLoopContext(CapzInternal capzInternal, EventLoop eventLoop, WorkerExecutor internalBlockingPool,
+                            WorkerExecutor workerPool, String deploymentID, ClassLoader tccl) {
         super(capzInternal, eventLoop, internalBlockingPool, workerPool, deploymentID, tccl);
     }
 

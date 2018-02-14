@@ -122,19 +122,9 @@ public class DeploymentOptions {
     }
 
 
-    public List<String> getIsolatedClasses() {
-        return isolatedClasses;
-    }
-
-
     public DeploymentOptions setIsolatedClasses(List<String> isolatedClasses) {
         this.isolatedClasses = isolatedClasses;
         return this;
-    }
-
-
-    public String getWorkerPoolName() {
-        return workerPoolName;
     }
 
 
@@ -144,22 +134,12 @@ public class DeploymentOptions {
     }
 
 
-    public int getWorkerPoolSize() {
-        return workerPoolSize;
-    }
-
-
     public DeploymentOptions setWorkerPoolSize(int workerPoolSize) {
         if (workerPoolSize < 1) {
             throw new IllegalArgumentException("workerPoolSize must be > 0");
         }
         this.workerPoolSize = workerPoolSize;
         return this;
-    }
-
-
-    public long getMaxWorkerExecuteTime() {
-        return maxWorkerExecuteTime;
     }
 
 

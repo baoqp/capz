@@ -25,8 +25,7 @@ public class CompilingClassLoader extends ClassLoader {
 
     private static final Logger log = LoggerFactory.getLogger(CompilingClassLoader.class);
 
-
-    private static final String JAVA_COMPILER_OPTIONS_PROP_NAME = "vertx.javaCompilerOptions";
+    private static final String JAVA_COMPILER_OPTIONS_PROP_NAME = "capz.javaCompilerOptions";
     private final static List<String> COMPILER_OPTIONS;
 
     static {
@@ -72,16 +71,23 @@ public class CompilingClassLoader extends ClassLoader {
             if (javaCompiler == null) {
                 throw new RuntimeException("Unable to detect java compiler, make sure you're using a JDK not a JRE!");
             }
-            StandardJavaFileManager standardFileManager = javaCompiler.getStandardFileManager(null, null, null);
+            StandardJavaFileManager standardFileManager = javaCompiler.getStandardFileManager(
+                    null, null, null);
 
-            standardFileManager.setLocation(StandardLocation.SOURCE_PATH, Collections.singleton(javaSourceContext.getSourceRoot()));
+            standardFileManager.setLocation(StandardLocation.SOURCE_PATH,
+                    Collections.singleton(javaSourceContext.getSourceRoot())); // java源文件所在目录
+
             fileManager = new MemoryFileManager(loader, standardFileManager);
 
             // TODO - this needs to be fixed so it can compile classes from the classpath otherwise can't include
             // other .java resources from other modules
 
-            JavaFileObject javaFile = standardFileManager.getJavaFileForInput(StandardLocation.SOURCE_PATH, resolveMainClassName(), Kind.SOURCE);
-            JavaCompiler.CompilationTask task = javaCompiler.getTask(null, fileManager, diagnostics, COMPILER_OPTIONS, null, Collections.singleton(javaFile));
+            JavaFileObject javaFile = standardFileManager.getJavaFileForInput(
+                    StandardLocation.SOURCE_PATH, resolveMainClassName(), Kind.SOURCE);
+
+            JavaCompiler.CompilationTask task = javaCompiler.getTask(
+                    null, fileManager, diagnostics, COMPILER_OPTIONS, null, Collections.singleton(javaFile));
+
             boolean valid = task.call();
             if (valid) {
                 for (Diagnostic<?> d : diagnostics.getDiagnostics()) {

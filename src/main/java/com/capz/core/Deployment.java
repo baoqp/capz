@@ -17,11 +17,11 @@ public interface Deployment {
 
     String deploymentID();
 
-    String verticleIdentifier();
+    String capsuleIdentifier();
 
     DeploymentOptions deploymentOptions();
 
-    Set<Capsule> getVerticles();
+    Set<Capsule> getCapsules();
 
     boolean isChild();
 }
