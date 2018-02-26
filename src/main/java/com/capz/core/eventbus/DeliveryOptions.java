@@ -6,7 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.capz.core.utils.StringUtil;
 import lombok.Getter;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class DeliveryOptions {
 
     private long timeout = DEFAULT_TIMEOUT;
     private String codecName;
-    private Map<String, HashSet<String>> headers;
+    private Map<String, List<String>> headers;
 
 
     public DeliveryOptions() {
@@ -65,9 +66,9 @@ public class DeliveryOptions {
         Objects.requireNonNull(key, "no null key accepted");
         Objects.requireNonNull(value, "no null value accepted");
 
-        HashSet<String> header;
+        List<String> header;
         if ((header = headers.get(key)) == null) {
-            header = new HashSet<>();
+            header = new ArrayList();
             headers.put(key, header);
         }
         header.add(value);

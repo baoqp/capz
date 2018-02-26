@@ -19,7 +19,6 @@ import com.capz.core.impl.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -192,7 +191,7 @@ public class EventBusImpl implements EventBus {
     }
 
 
-    protected MessageImpl createMessage(boolean send, String address, Map<String, HashSet<String>> headers, Object body, String codecName) {
+    protected MessageImpl createMessage(boolean send, String address, Map<String, List<String>> headers, Object body, String codecName) {
         Objects.requireNonNull(address, "no null address accepted");
         MessageCodec codec = codecManager.lookupCodec(body, codecName);
         @SuppressWarnings("unchecked")

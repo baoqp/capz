@@ -10,7 +10,7 @@ import com.capz.core.eventbus.ReplyFailure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 public class MessageImpl<U, V> implements Message<V> {
@@ -21,7 +21,7 @@ public class MessageImpl<U, V> implements Message<V> {
     protected EventBusImpl bus;
     protected String address;
     protected String replyAddress;
-    protected Map<String, HashSet<String>> headers;
+    protected Map<String, List<String>> headers;
     protected U sentBody;
     protected V receivedBody;
     protected boolean send;

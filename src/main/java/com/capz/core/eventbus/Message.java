@@ -3,7 +3,7 @@ package com.capz.core.eventbus;
 import com.capz.core.AsyncResult;
 import com.capz.core.Handler;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 // 从eventbus中接收的信息
@@ -11,7 +11,7 @@ public interface Message<T> {
 
     String address();
 
-    Map<String, HashSet<String>> headers();
+    Map<String, List<String>> headers();
 
     T body();
 
