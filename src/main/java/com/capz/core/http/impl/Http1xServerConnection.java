@@ -40,28 +40,23 @@ import static io.netty.handler.codec.http.HttpResponseStatus.CONTINUE;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
- * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
- * <p>
- * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
- * we benefit from biased locking which makes the overhead of synchronized near zero.
- * <p>
+ * This class is optimised for performance when used on the same event loop. However it can be used safely from
+ * other threads. The internal state is protected using the synchronized keyword. If always used on the same event
+ * loop, then we benefit from biased locking which makes the overhead of synchronized near zero.
  * 服务端连接封装
  */
 public class Http1xServerConnection extends Http1xConnectionBase implements HttpConnection {
 
     private static final Logger log = LoggerFactory.getLogger(Http1xServerConnection.class);
 
-    private static final Handler<HttpServerRequest> NULL_REQUEST_HANDLER = req -> {
-    };
+    private static final Handler<HttpServerRequest> NULL_REQUEST_HANDLER = req -> {};
 
     private static final int CHANNEL_PAUSE_QUEUE_SIZE = 5;
 
-    private final Deque<Object> pending = new ArrayDeque<>(8);
+    private final Deque  pending = new ArrayDeque (8);
+
     private final String serverOrigin;
 
-
-    private boolean requestFailed;
-    private Object requestMetric;
     private Handler<HttpServerRequest> requestHandler = NULL_REQUEST_HANDLER;
 
     private HttpServerRequestImpl currentRequest;
@@ -70,8 +65,7 @@ public class Http1xServerConnection extends Http1xConnectionBase implements Http
     private boolean channelPaused;
     private boolean paused;
     private boolean sentCheck;
-    private long bytesRead;
-    private long bytesWritten;
+
     private boolean queueing;
 
     private HttpServerOptions options;
@@ -141,13 +135,12 @@ public class Http1xServerConnection extends Http1xConnectionBase implements Http
         return serverOrigin;
     }
 
-    Capz capz() {
+    CapzInternal capz() {
         return capz;
     }
 
 
     private void handleChunk(Buffer chunk) {
-
         currentRequest.handleData(chunk);
     }
 
@@ -299,7 +292,6 @@ public class Http1xServerConnection extends Http1xConnectionBase implements Http
 
     private void handleLastHttpContent() {
         currentRequest.handleEnd();
-
         currentRequest = null;
     }
 
@@ -339,7 +331,6 @@ public class Http1xServerConnection extends Http1xConnectionBase implements Http
 
     private long getBytes(Object obj) {
         if (obj == null) return 0;
-
         if (obj instanceof Buffer) {
             return ((Buffer) obj).length();
         } else if (obj instanceof ByteBuf) {

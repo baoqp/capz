@@ -1,4 +1,4 @@
-package com.capz.core.stream;
+package com.capz.core.streams;
 
 import com.capz.core.Handler;
 
@@ -26,7 +26,7 @@ public interface WriteStream<T> extends StreamBase {
     boolean writeQueueFull();
 
     /**
-     * Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
+     * Set a drain handler on the streams. If the write queue is full, then the handler will be called when the write
      * queue is ready to accept buffers again.
      */
     WriteStream<T> drainHandler(Handler<Void> handler);

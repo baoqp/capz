@@ -10,26 +10,17 @@ public interface HttpConnection {
         return -1;
     }
 
-
     default HttpConnection setWindowSize(int windowSize) {
         return this;
     }
 
-
     HttpConnection closeHandler(Handler<Void> handler);
-
 
     void close();
 
-
     HttpConnection exceptionHandler(Handler<Throwable> handler);
 
-
-    /**
-     * @return the remote address for this connection
-     */
     SocketAddress remoteAddress();
-
 
     SocketAddress localAddress();
 

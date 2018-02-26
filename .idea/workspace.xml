@@ -2,47 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faed6586-1f3c-42e1-91b1-ea636faaf1ae" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpHeaders.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpMethod.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServer.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerFileUpload.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerOptions.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerResponse.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledFullHttpResponse.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledHttpResponse.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledLastHttpContent.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHttpHandler.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHttpHeaders.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xConnectionBase.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpHandlers.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerRequestImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerResponseImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpUtils.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/MimeMapping.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUpload.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/NetServerOptions.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/SocketAddress.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/CapzEventLoopGroup.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerManager.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ServerID.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/SocketAddressImpl.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFile.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFileImpl.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/file/FileSystemException.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/file/OpenOptions.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/streams/Pump.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/streams/impl/PumpImpl.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/example/HttpExample.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/CapzInternal.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/CapzInternal.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/DeliveryOptions.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/DeliveryOptions.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/Message.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/Message.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/EventBusImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/EventBusImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/MessageImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/MessageImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/Capz.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/Capz.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/Exception/CapzException.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/Exception/CapzException.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/MessageConsumer.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/MessageConsumer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/MessageProducer.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/MessageProducer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/HandlerRegistration.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/HandlerRegistration.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServer.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerFileUpload.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerFileUpload.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerResponse.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerResponse.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/MimeMapping.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/MimeMapping.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/impl/CapzImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/impl/CapzImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/stream/ReadStream.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/streams/ReadStream.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/stream/StreamBase.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/streams/StreamBase.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capz/core/stream/WriteStream.java" afterPath="$PROJECT_DIR$/src/main/java/com/capz/core/streams/WriteStream.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF.services/com.capz.core.spi.BufferFactory" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/services/com.capz.core.spi.BufferFactory" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF.services/com.capz.core.spi.BufferFactory" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,30 +51,9 @@
       <file leaf-file-name="HttpServerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding>
-                <element signature="e#8264#8265#0" expanded="true" />
-                <element signature="e#8316#8317#0" expanded="true" />
-                <element signature="e#8385#8386#0" expanded="true" />
-                <element signature="e#8432#8433#0" expanded="true" />
-                <element signature="e#10752#10753#0" expanded="true" />
-                <element signature="e#10785#10786#0" expanded="true" />
-                <element signature="method#sendServiceUnavailable#0;class#HttpServerImpl#0" expanded="false" />
-                <element signature="class#HttpStreamHandler#0;class#HttpServerImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Http1xServerConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="308" column="36" lean-forward="true" selection-start-line="308" selection-start-column="36" selection-end-line="308" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-12">
+              <caret line="99" column="98" lean-forward="false" selection-start-line="99" selection-start-column="98" selection-end-line="99" selection-end-column="98" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,8 +61,50 @@
       <file leaf-file-name="HttpServerFileUploadImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="169" column="15" lean-forward="false" selection-start-line="169" selection-start-column="15" selection-end-line="169" selection-end-column="15" />
+            <state relative-caret-position="143">
+              <caret line="132" column="24" lean-forward="true" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AsyncFileImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFileImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="51" column="11" lean-forward="false" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pump.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/streams/Pump.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PumpImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/streams/impl/PumpImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NettyFileUploadDataFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -99,40 +113,42 @@
       <file leaf-file-name="HttpServerRequestImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerRequestImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="136" column="15" lean-forward="false" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+            <state relative-caret-position="425">
+              <caret line="275" column="103" lean-forward="false" selection-start-line="275" selection-start-column="103" selection-end-line="275" selection-end-column="103" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Http1xServerConnection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
               <folding>
-                <element signature="e#4202#4203#0" expanded="true" />
-                <element signature="e#4251#4252#0" expanded="true" />
-                <element signature="e#4321#4322#0" expanded="true" />
-                <element signature="e#4368#4369#0" expanded="true" />
+                <element signature="e#4427#4428#0" expanded="true" />
+                <element signature="e#4454#4455#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpServerResponseImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerResponseImpl.java">
+      <file leaf-file-name="Http1xConnectionBase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xConnectionBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="171" column="33" lean-forward="false" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3076#3077#0" expanded="true" />
-                <element signature="e#3106#3107#0" expanded="true" />
-                <element signature="e#3430#3431#0" expanded="true" />
-                <element signature="e#3466#3467#0" expanded="true" />
-                <element signature="e#3757#3758#0" expanded="true" />
-                <element signature="e#3801#3802#0" expanded="true" />
-                <element signature="e#8464#8465#0" expanded="true" />
-                <element signature="e#8527#8528#0" expanded="true" />
-                <element signature="e#8701#8702#0" expanded="true" />
-                <element signature="e#8742#8743#0" expanded="true" />
-                <element signature="e#8805#8806#0" expanded="true" />
-                <element signature="e#8851#8852#0" expanded="true" />
-                <element signature="e#17938#17939#0" expanded="true" />
-                <element signature="e#17963#17964#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectionBase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,43 +167,42 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>JDK</find>
-      <find>isVertxOrSystemClass</find>
-      <find>lombo</find>
-      <find>\/\*[\s\S]*?\*\/</find>
-      <find>vertx</find>
-      <find>availableWorkers</find>
-      <find>write100Continue</find>
-      <find>@Nullable</find>
-      <find>@Fluent</find>
-      <find>VertxInternal</find>
-      <find>com.capz.core.http</find>
-      <find>method</find>
-      <find>LinkedHashSet</find>
-      <find>formAttributes</find>
-      <find>header</find>
-      <find>Set</find>
-      <find>HashSet</find>
-      <find>CharSequence</find>
-      <find>MultiMap</find>
-      <find>VertxHttpHeaders</find>
-      <find>contentLengthSet</find>
-      <find>add</find>
       <find>headers</find>
       <find>HttpHeaders</find>
       <find>ConnectionBase·</find>
       <find>ChannelDuplexHandler</find>
-      <find>endReadAndFlush</find>
       <find>version</find>
       <find>ContextImpl</find>
       <find>trailingHeaders</find>
+      <find>getContext</find>
+      <find>runOnContext</find>
+      <find>executeAsync</find>
+      <find>HttpServerImpl</find>
+      <find>runOnContextlisten</find>
+      <find>getOrCreateContext</find>
+      <find>SocketAddress</find>
+      <find>serverOri</find>
+      <find>handleInterestedOpsChanged</find>
+      <find>channelWritabilityChanged</find>
+      <find>processMessage</find>
+      <find>handleMessage</find>
+      <find>metric</find>
+      <find>endReadAndFlush</find>
+      <find>addHandler</find>
+      <find>holder</find>
+      <find>configureHttp1</find>
+      <find>handleHttp1</find>
+      <find>HttpStreamHandler</find>
+      <find>requestStream</find>
+      <find>\/\*[\s\S]*\*\/</find>
+      <find>vertx</find>
+      <find>connectionHandler</find>
     </findStrings>
     <replaceStrings>
       <replace>CapzO</replace>
       <replace>capzInternal</replace>
       <replace>Capz</replace>
       <replace>Capsule</replace>
-      <replace>capz</replace>
       <replace>Map&lt;String,HashSet&lt;String&gt;&gt;</replace>
       <replace>CapzInternal</replace>
       <replace>Map&lt;String,LinkedHashSet&lt;String&gt;&gt;</replace>
@@ -195,6 +210,7 @@
       <replace>Map&lt;String, List&lt;String&gt;&gt;</replace>
       <replace>CapzHttpHeaders</replace>
       <replace>AbstractContext</replace>
+      <replace>capz</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -215,25 +231,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/capsule/PackageHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/capsule/MemoryFileManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/capsule/CompilingClassLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/DeploymentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/DeploymentOptions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/IsolatingClassLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/ServerID.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ServerID.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/VertxEventLoopGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/CapzEventLoopGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpHandlers.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/NetServerOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/CapzInternal.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/SocketAddressImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/SocketAddress.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xConnectionBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerFileUpload.java" />
@@ -242,8 +245,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/EventBusImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/DeliveryOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUpload.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledHttpResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledFullHttpResponse.java" />
@@ -255,17 +256,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/VertxHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/VertxHttpHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHttpHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerRequestImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerResponseImpl.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/Capz.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/impl/CapzImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/example/HttpExample.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/file/OpenOptions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/file/FileSystemException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/Exception/CapzException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/streams/Pump.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFileImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/streams/impl/PumpImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java" />
       </list>
     </option>
   </component>
@@ -299,11 +315,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1463" />
-    <option name="y" value="12" />
-    <option name="width" value="1549" />
-    <option name="height" value="975" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-298" />
+    <option name="y" value="69" />
+    <option name="width" value="1644" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -564,7 +580,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="capz" type="b2602c69:ProjectViewProjectNode" />
@@ -573,17 +589,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="capz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="capz" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="stream" type="462c0819:PsiDirectoryNode" />
+              <item name="streams" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="capz" type="b2602c69:ProjectViewProjectNode" />
@@ -606,7 +612,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF.services" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -626,14 +632,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.capz.core.impl" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\personal-workspace\JavaWorkspace\capz\src\main\resources\META-INF\services" />
       <recent name="E:\personal-workspace\JavaWorkspace\capz\src\main\resources" />
       <recent name="E:\personal-workspace\JavaWorkspace\capz\src\main\java\com\capz\core\eventbus\impl" />
       <recent name="C:\code\capz" />
       <recent name="E:\personal-workspace\JavaWorkspace\capz\src\main\resources\META-INF.services" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.capz.core.impl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -648,7 +655,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HttpExample">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -663,6 +670,25 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="example.EventBusExample" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="capz" />
+      <envs />
+    </configuration>
+    <configuration name="HttpExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="example.HttpExample" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -748,9 +774,14 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.EventBusExample" />
+      <item index="1" class="java.lang.String" itemvalue="Application.HttpExample" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.EventBusExample" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.HttpExample" />
+        <item index="1" class="java.lang.String" itemvalue="Application.EventBusExample" />
       </list>
     </recent_temporary>
   </component>
@@ -778,7 +809,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88684000" />
+    <option name="totallyTimeSpent" value="102349000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -790,7 +821,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1463" y="12" width="1549" height="975" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -806,17 +837,17 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45591646" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2703125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41887593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31707317" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26723224" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3032874" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36459553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26744944" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36426914" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40509012" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -869,7 +900,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2703125" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26723224" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -878,7 +909,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27232796" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06786851" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -923,251 +954,45 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="25" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="bindFuture" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-527">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2735#2736#0" expanded="false" />
-            <element signature="e#2776#2777#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/java/src.zip!/java/net/SocketAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/SocketAddressImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/CapzInternal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#168#169#0" expanded="false" />
-            <element signature="e#193#194#0" expanded="false" />
-            <element signature="e#254#255#0" expanded="false" />
-            <element signature="e#281#282#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/QueryStringDecoder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/MessageImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/impl/EventBusImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/eventbus/DeliveryOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerFileUpload.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/example/EventBusExample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <caret line="15" column="44" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="15" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/Capz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="57" column="15" lean-forward="false" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/impl/CapzImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="107" column="22" lean-forward="false" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#2496#2497#0" expanded="false" />
+            <element signature="e#2535#2536#0" expanded="false" />
+            <element signature="e#14601#14602#0" expanded="false" />
+            <element signature="e#14665#14666#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/stream/ReadStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/stream/WriteStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/multipart/FileUpload.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1666">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/multipart/Attribute.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="236" column="34" lean-forward="false" selection-start-line="236" selection-start-column="34" selection-end-line="236" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/java/src.zip!/java/lang/Iterable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/FullHttpResponse.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledFullHttpResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/java/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="636" column="43" lean-forward="true" selection-start-line="636" selection-start-column="43" selection-end-line="636" selection-end-column="43" />
-          <folding>
-            <element signature="e#19327#19328#0" expanded="false" />
-            <element signature="e#19410#19411#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledLastHttpContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/MimeMapping.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/com.capz.core.spi.BufferFactory">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1175,180 +1000,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xConnectionBase.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/SocketAddress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="69" lean-forward="true" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpHeaders.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="476" column="23" lean-forward="false" selection-start-line="476" selection-start-column="23" selection-end-line="476" selection-end-column="23" />
+        <state relative-caret-position="255">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
-            <element signature="e#14472#14473#0" expanded="true" />
-            <element signature="e#14527#14528#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="false" />
+            <element signature="e#515#516#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpHeaders.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/SocketAddressImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="143" column="35" lean-forward="false" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
+        <state relative-caret-position="85">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/util/AsciiString.class">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/services/com.capz.core.spi.BufferFactory">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerResponseImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-608">
+          <caret line="388" column="17" lean-forward="false" selection-start-line="388" selection-start-column="17" selection-end-line="388" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/buffer/ByteBuf.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/AssembledHttpResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/ContextTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHttpHeaders.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/impl/AbstractContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-            <element signature="e#926#927#0" expanded="true" />
-            <element signature="e#965#966#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1084#1085#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#3740#3741#0" expanded="true" />
-            <element signature="e#3781#3782#0" expanded="true" />
-            <element signature="e#5972#5973#0" expanded="true" />
-            <element signature="e#6019#6020#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#6530#6531#0" expanded="true" />
-            <element signature="e#7210#7211#0" expanded="true" />
-            <element signature="e#7273#7274#0" expanded="true" />
-            <element signature="e#7343#7344#0" expanded="true" />
-            <element signature="e#7408#7409#0" expanded="true" />
-            <element signature="e#7490#7491#0" expanded="true" />
-            <element signature="e#7565#7566#0" expanded="true" />
-            <element signature="e#7635#7636#0" expanded="true" />
-            <element signature="e#7710#7711#0" expanded="true" />
-            <element signature="e#7862#7863#0" expanded="true" />
-            <element signature="e#7905#7906#0" expanded="true" />
-            <element signature="e#7963#7964#0" expanded="true" />
-            <element signature="e#8015#8016#0" expanded="true" />
-            <element signature="e#8061#8062#0" expanded="true" />
-            <element signature="e#8102#8103#0" expanded="true" />
-            <element signature="e#9211#9212#0" expanded="true" />
-            <element signature="e#9252#9253#0" expanded="true" />
-            <element signature="e#9804#9805#0" expanded="true" />
-            <element signature="e#9850#9851#0" expanded="true" />
-            <element signature="e#10136#10137#0" expanded="true" />
-            <element signature="e#10193#10194#0" expanded="true" />
-            <element signature="e#10269#10270#0" expanded="true" />
-            <element signature="e#10326#10327#0" expanded="true" />
-            <element signature="e#10388#10389#0" expanded="true" />
-            <element signature="e#10445#10446#0" expanded="true" />
-            <element signature="e#10527#10528#0" expanded="true" />
-            <element signature="e#10584#10585#0" expanded="true" />
-            <element signature="e#10650#10651#0" expanded="true" />
-            <element signature="e#10707#10708#0" expanded="true" />
-            <element signature="e#10792#10793#0" expanded="true" />
-            <element signature="e#10849#10850#0" expanded="true" />
-            <element signature="e#11140#11141#0" expanded="true" />
-            <element signature="e#11194#11195#0" expanded="true" />
-            <element signature="e#11525#11526#0" expanded="true" />
-            <element signature="e#11594#11595#0" expanded="true" />
-            <element signature="e#11671#11672#0" expanded="true" />
-            <element signature="e#11728#11729#0" expanded="true" />
-            <element signature="e#11809#11810#0" expanded="true" />
-            <element signature="e#11866#11867#0" expanded="true" />
-            <element signature="e#11937#11938#0" expanded="true" />
-            <element signature="e#11992#11993#0" expanded="true" />
-            <element signature="e#12069#12070#0" expanded="true" />
-            <element signature="e#12126#12127#0" expanded="true" />
-            <element signature="e#12207#12208#0" expanded="true" />
-            <element signature="e#12264#12265#0" expanded="true" />
-            <element signature="e#13041#13042#0" expanded="true" />
-            <element signature="e#13075#13076#0" expanded="true" />
-            <element signature="e#13135#13136#0" expanded="true" />
-            <element signature="e#13171#13172#0" expanded="true" />
-            <element signature="e#13474#13475#0" expanded="true" />
-            <element signature="e#13533#13534#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3588#3589#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="181" column="10" lean-forward="false" selection-start-line="181" selection-start-column="10" selection-end-line="181" selection-end-column="10" />
+        <state relative-caret-position="210">
+          <caret line="148" column="16" lean-forward="false" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/channel/ChannelOutboundInvoker.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="393">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHttpHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/channel/ChannelHandlerContext.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="513">
+          <caret line="44" column="26" lean-forward="false" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpVersion.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/stream/ChunkedFile.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="37" column="11" lean-forward="false" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/LastHttpContent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpContent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/multipart/HttpPostRequestDecoder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="254">
+          <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1360,128 +1155,253 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/SocketAddress.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="187">
+          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/util/concurrent/Future.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/NetServerOptions.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/bootstrap/AbstractBootstrap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="305">
+          <caret line="196" column="25" lean-forward="false" selection-start-line="196" selection-start-column="25" selection-end-line="196" selection-end-column="25" />
+          <folding>
+            <element signature="e#8772#9101#0" expanded="true" />
+            <element signature="e#9100#9101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/channel/ChannelFuture.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/AsyncResolveConnectHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="68" column="41" lean-forward="false" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        <state relative-caret-position="-5">
+          <caret line="0" column="31" lean-forward="true" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/impl/Future.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#659#660#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/example/HttpExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/CapzHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding>
+            <element signature="e#1323#1324#0" expanded="false" />
+            <element signature="e#1350#1351#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/HandlerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="21" lean-forward="false" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        <state relative-caret-position="187">
+          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/Exception/CapzException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#304#305#0" expanded="false" />
+            <element signature="e#341#342#0" expanded="false" />
+            <element signature="e#386#387#0" expanded="false" />
+            <element signature="e#414#415#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/java/src.zip!/java/nio/channels/AsynchronousFileChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1760">
+          <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/file/OpenOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/file/FileSystemException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/WorkerExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/CapzInternal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="72" column="56" lean-forward="true" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#8264#8265#0" expanded="true" />
-            <element signature="e#8316#8317#0" expanded="true" />
-            <element signature="e#8385#8386#0" expanded="true" />
-            <element signature="e#8432#8433#0" expanded="true" />
-            <element signature="e#10752#10753#0" expanded="true" />
-            <element signature="e#10785#10786#0" expanded="true" />
-            <element signature="method#sendServiceUnavailable#0;class#HttpServerImpl#0" expanded="false" />
-            <element signature="class#HttpStreamHandler#0;class#HttpServerImpl#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-12">
+          <caret line="99" column="98" lean-forward="false" selection-start-line="99" selection-start-column="98" selection-end-line="99" selection-end-column="98" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/streams/Pump.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="308" column="36" lean-forward="true" selection-start-line="308" selection-start-column="36" selection-end-line="308" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="141">
+          <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/HttpServerRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/file/AsyncFileImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="29" column="22" lean-forward="false" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="143">
+          <caret line="51" column="11" lean-forward="false" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerFileUploadImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="169" column="15" lean-forward="false" selection-start-line="169" selection-start-column="15" selection-end-line="169" selection-end-column="15" />
+        <state relative-caret-position="143">
+          <caret line="132" column="24" lean-forward="true" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.20.Final/netty-all-4.1.20.Final.jar!/io/netty/handler/codec/http/HttpMessage.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/streams/impl/PumpImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="228">
+          <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/NettyFileUploadDataFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xConnectionBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerRequestImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="136" column="15" lean-forward="false" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
-          <folding>
-            <element signature="e#4202#4203#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
-            <element signature="e#4321#4322#0" expanded="true" />
-            <element signature="e#4368#4369#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="425">
+          <caret line="275" column="103" lean-forward="false" selection-start-line="275" selection-start-column="103" selection-end-line="275" selection-end-column="103" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/HttpServerResponseImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/net/impl/ConnectionBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="171" column="33" lean-forward="false" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
+        <state relative-caret-position="213">
+          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/capz/core/http/impl/Http1xServerConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3076#3077#0" expanded="true" />
-            <element signature="e#3106#3107#0" expanded="true" />
-            <element signature="e#3430#3431#0" expanded="true" />
-            <element signature="e#3466#3467#0" expanded="true" />
-            <element signature="e#3757#3758#0" expanded="true" />
-            <element signature="e#3801#3802#0" expanded="true" />
-            <element signature="e#8464#8465#0" expanded="true" />
-            <element signature="e#8527#8528#0" expanded="true" />
-            <element signature="e#8701#8702#0" expanded="true" />
-            <element signature="e#8742#8743#0" expanded="true" />
-            <element signature="e#8805#8806#0" expanded="true" />
-            <element signature="e#8851#8852#0" expanded="true" />
-            <element signature="e#17938#17939#0" expanded="true" />
-            <element signature="e#17963#17964#0" expanded="true" />
+            <element signature="e#4427#4428#0" expanded="true" />
+            <element signature="e#4454#4455#0" expanded="true" />
           </folding>
         </state>
       </provider>

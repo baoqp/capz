@@ -5,7 +5,7 @@ import com.capz.core.Handler;
 import com.capz.core.buffer.Buffer;
 import com.capz.core.http.impl.CapzHttpHeaders;
 import com.capz.core.net.SocketAddress;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 
 import java.util.List;
 import java.util.Map;

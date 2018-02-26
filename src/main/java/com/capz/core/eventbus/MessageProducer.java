@@ -2,7 +2,7 @@ package com.capz.core.eventbus;
 
 import com.capz.core.AsyncResult;
 import com.capz.core.Handler;
-import com.capz.core.stream.WriteStream;
+import com.capz.core.streams.WriteStream;
 
 public interface MessageProducer<T> extends WriteStream<T> {
 

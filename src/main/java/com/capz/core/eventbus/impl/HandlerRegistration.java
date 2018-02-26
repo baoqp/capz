@@ -9,7 +9,7 @@ import com.capz.core.eventbus.Message;
 import com.capz.core.eventbus.MessageConsumer;
 import com.capz.core.eventbus.ReplyFailure;
 import com.capz.core.impl.Future;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

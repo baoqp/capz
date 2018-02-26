@@ -3,7 +3,7 @@ package com.capz.core.http;
 
 import com.capz.core.Handler;
 import com.capz.core.buffer.Buffer;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 
 /**
  * Represents an file upload from an HTML FORM.

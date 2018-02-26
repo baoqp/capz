@@ -1,6 +1,7 @@
 package com.capz.core;
 
 import com.capz.core.eventbus.EventBus;
+import com.capz.core.http.HttpServer;
 import com.capz.core.impl.CapzFactory;
 import com.capz.core.impl.Future;
 import io.netty.channel.EventLoopGroup;
@@ -52,4 +53,7 @@ public interface Capz {
     WorkerExecutor createSharedWorkerExecutor(String name, int poolSize);
 
     WorkerExecutor createSharedWorkerExecutor(String name, int poolSize, long maxExecuteTime);
+
+
+    HttpServer createHttpServer();
 }

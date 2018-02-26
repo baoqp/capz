@@ -2,7 +2,7 @@ package com.capz.core.eventbus;
 
 import com.capz.core.AsyncResult;
 import com.capz.core.Handler;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 
 public interface MessageConsumer<T> {
 

@@ -52,12 +52,6 @@ public class AsyncResolveConnectHelper {
         }
     }
 
-    public static Class<? extends ServerChannel> serverChannelType(boolean domain) {
-        if (domain) {
-            throw new IllegalArgumentException();
-        }
-        return NioServerSocketChannel.class;
-    }
 
     public static java.net.SocketAddress convert(com.capz.core.net.SocketAddress address, boolean resolved) {
         if (address.path() != null) {
@@ -75,38 +69,20 @@ public class AsyncResolveConnectHelper {
     public static AsyncResolveConnectHelper doBind(CapzInternal capz, SocketAddress socketAddress,
                                                    ServerBootstrap bootstrap) {
         AsyncResolveConnectHelper asyncResolveConnectHelper = new AsyncResolveConnectHelper();
-        bootstrap.channel(serverChannelType(socketAddress.path() != null));
-        if (socketAddress.path() != null) {
-            java.net.SocketAddress converted =  convert(socketAddress, true);
-            ChannelFuture future = bootstrap.bind(converted);
-            future.addListener(f -> {
-                if (f.isSuccess()) {
-                    asyncResolveConnectHelper.handle(future, Future.succeededFuture(future.channel()));
-                } else {
-                    asyncResolveConnectHelper.handle(future, Future.failedFuture(f.cause()));
-                }
-            });
-        } else {
-            checkPort(socketAddress.port());
+        bootstrap.channel(NioServerSocketChannel.class);
 
-            // TODO
-            /*  vertx.resolveAddress(socketAddress.host(), res -> {
-                if (res.succeeded()) {
-                    // At this point the name is an IP address so there will be no resolve hit
-                    InetSocketAddress t = new InetSocketAddress(res.result(), socketAddress.port());
-                    ChannelFuture future = bootstrap.bind(t);
-                    future.addListener(f -> {
-                        if (f.isSuccess()) {
-                            asyncResolveConnectHelper.handle(future, Future.succeededFuture(future.channel()));
-                        } else {
-                            asyncResolveConnectHelper.handle(future, Future.failedFuture(f.cause()));
-                        }
-                    });
-                } else {
-                    asyncResolveConnectHelper.handle(null, Future.failedFuture(res.cause()));
-                }
-            });*/
-        }
+        java.net.SocketAddress converted = convert(socketAddress, true);
+
+        ChannelFuture future = bootstrap.bind(converted);
+
+        future.addListener(f -> {
+            if (f.isSuccess()) {
+                asyncResolveConnectHelper.handle(future, Future.succeededFuture(future.channel()));
+            } else {
+                asyncResolveConnectHelper.handle(future, Future.failedFuture(f.cause()));
+            }
+        });
+
         return asyncResolveConnectHelper;
     }
 }

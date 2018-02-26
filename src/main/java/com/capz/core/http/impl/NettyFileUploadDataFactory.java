@@ -1,6 +1,7 @@
 package com.capz.core.http.impl;
 
 import com.capz.core.Capz;
+import com.capz.core.CapzInternal;
 import com.capz.core.Handler;
 import com.capz.core.http.HttpServerFileUpload;
 import com.capz.core.http.HttpServerRequest;
@@ -13,11 +14,11 @@ import java.util.function.Supplier;
 
 class NettyFileUploadDataFactory extends DefaultHttpDataFactory {
 
-    final Capz capz;
+    final CapzInternal capz;
     final HttpServerRequest request;
     final Supplier<Handler<HttpServerFileUpload>> lazyUploadHandler;
 
-    NettyFileUploadDataFactory(Capz capz, HttpServerRequest request, Supplier<Handler<HttpServerFileUpload>> lazyUploadHandler) {
+    NettyFileUploadDataFactory(CapzInternal capz, HttpServerRequest request, Supplier<Handler<HttpServerFileUpload>> lazyUploadHandler) {
         super(false);
         this.capz = capz;
         this.request = request;

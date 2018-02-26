@@ -16,7 +16,7 @@ import com.capz.core.net.impl.CapzEventLoopGroup;
 import com.capz.core.net.impl.HandlerHolder;
 import com.capz.core.net.impl.HandlerManager;
 import com.capz.core.net.impl.ServerID;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -82,9 +82,24 @@ public class HttpServerImpl implements HttpServer {
 
     private Handler<Throwable> exceptionHandler;
 
+
+    public HttpServerImpl(CapzInternal capz, HttpServerOptions options) {
+        this.options = new HttpServerOptions(options);
+        this.capz = capz;
+        this.creatingContext = capz.getContext();
+        if (creatingContext != null) {
+            if (creatingContext.isMultiThreadedWorkerContext()) {
+                throw new IllegalStateException("Cannot use HttpServer in a multi-threaded worker verticle");
+            }
+            //creatingContext.addCloseHook(this);
+        }
+        this.logEnabled = true;
+    }
+
+
     public synchronized HttpServer listen(int port, String host, Handler<AsyncResult<HttpServer>> listenHandler) {
 
-        /*if (requestStream.handler() == null && wsStream.handler() == null) {
+        /*if (requestStream.handler() == null) {
             throw new IllegalStateException("Set request or websocket handler first");
         }*/
 
@@ -94,6 +109,7 @@ public class HttpServerImpl implements HttpServer {
 
         listenContext = capz.getOrCreateContext();
         listening = true;
+        serverOrigin = "http://" + host + ":" + port;
 
         synchronized (capz.sharedHttpServers()) {
             this.actualPort = port; // Will be updated on bind for a wildcard port
@@ -112,11 +128,8 @@ public class HttpServerImpl implements HttpServer {
                             ch.close();
                             return;
                         }
-                        ChannelPipeline pipeline = ch.pipeline();
-
                         // 只支持http1
                         handleHttp1(ch);
-
                     }
                 });
 
@@ -124,6 +137,9 @@ public class HttpServerImpl implements HttpServer {
 
                 try {
                     bindFuture = AsyncResolveConnectHelper.doBind(capz, SocketAddress.inetSocketAddress(port, host), bootstrap);
+
+                    // doBind是异步绑定的，addListener在doBind后面才调用，如果只是简单地保存handler会有问题，因此在
+                    // addListener时要注意是否已经绑定完毕，如果绑定完毕直接调用listener
                     bindFuture.addListener(res -> {
                         if (res.failed()) {
                             capz.sharedHttpServers().remove(id);
@@ -131,10 +147,10 @@ public class HttpServerImpl implements HttpServer {
                             Channel serverChannel = res.result();
                             HttpServerImpl.this.actualPort = ((InetSocketAddress) serverChannel.localAddress()).getPort();
                             serverChannelGroup.add(serverChannel);
-
-
                         }
                     });
+
+
                 } catch (final Throwable t) {
                     // Make sure we send the exception back through the handler (if any)
                     if (listenHandler != null) {
@@ -153,8 +169,8 @@ public class HttpServerImpl implements HttpServer {
                 actualServer = shared;
                 this.actualPort = shared.actualPort;
                 addHandlers(actualServer, listenContext);
-
             }
+
             actualServer.bindFuture.addListener(future -> {
                 if (listenHandler != null) {
                     final AsyncResult<HttpServer> res;
@@ -280,7 +296,6 @@ public class HttpServerImpl implements HttpServer {
                 actualServer.httpHandlerMgr.removeHandler(
                         new HttpHandlers(
                                 requestStream.handler(),
-
                                 connectionHandler,
                                 exceptionHandler == null ? DEFAULT_EXCEPTION_HANDLER : exceptionHandler)
                         , listenContext);
@@ -363,6 +378,7 @@ public class HttpServerImpl implements HttpServer {
             pipeline.addLast("logging", new LoggingHandler());
         }
 
+        // http协议的编/解码器
         pipeline.addLast("httpDecoder", new HttpRequestDecoder(options.getMaxInitialLineLength(),
                 options.getMaxHeaderSize(), options.getMaxChunkSize(), false, options.getDecoderInitialBufferSize()));
         pipeline.addLast("httpEncoder", new HttpResponseEncoder());

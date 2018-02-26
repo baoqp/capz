@@ -1,4 +1,4 @@
-package com.capz.core.stream;
+package com.capz.core.streams;
 
 import com.capz.core.Handler;
 
@@ -14,7 +14,7 @@ public interface ReadStream<T> extends StreamBase {
 
     ReadStream<T> resume();
 
-    // Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+    // Set an end handler. Once the streams has ended, and there is no more data to be read, this handler will be called.
     ReadStream<T> endHandler(Handler<Void> endHandler);
 
 }

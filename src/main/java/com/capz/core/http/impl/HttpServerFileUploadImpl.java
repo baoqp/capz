@@ -1,10 +1,16 @@
 package com.capz.core.http.impl;
 
 import com.capz.core.Capz;
+import com.capz.core.CapzInternal;
 import com.capz.core.Handler;
 import com.capz.core.buffer.Buffer;
+import com.capz.core.file.AsyncFile;
+import com.capz.core.file.AsyncFileImpl;
+import com.capz.core.file.OpenOptions;
 import com.capz.core.http.HttpServerFileUpload;
 import com.capz.core.http.HttpServerRequest;
+import com.capz.core.streams.Pump;
+import com.capz.core.streams.impl.PumpImpl;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -12,7 +18,7 @@ import java.nio.charset.Charset;
 class HttpServerFileUploadImpl implements HttpServerFileUpload {
 
     private final HttpServerRequest req;
-    private final Capz capz;
+    private final CapzInternal capz;
     private final String name;
     private final String filename;
     private final String contentType;
@@ -32,7 +38,7 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
     private boolean complete;
     private boolean lazyCalculateSize;
 
-    HttpServerFileUploadImpl(Capz capz, HttpServerRequest req, String name, String filename, String contentType,
+    HttpServerFileUploadImpl(CapzInternal capz, HttpServerRequest req, String name, String filename, String contentType,
                              String contentTransferEncoding, Charset charset, long size) {
         this.capz = capz;
         this.req = req;
@@ -122,7 +128,11 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
     public HttpServerFileUpload streamToFileSystem(String filename) {
         pause();
         // TODO 写入文件
+        AsyncFile file = new AsyncFileImpl(capz, filename, new OpenOptions(), capz.getOrCreateContext());
 
+        Pump p = new PumpImpl(HttpServerFileUploadImpl.this, file);
+        p.start();
+        resume();
         return this;
     }
 

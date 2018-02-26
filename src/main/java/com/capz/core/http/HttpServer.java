@@ -2,7 +2,7 @@ package com.capz.core.http;
 
 import com.capz.core.AsyncResult;
 import com.capz.core.Handler;
-import com.capz.core.stream.ReadStream;
+import com.capz.core.streams.ReadStream;
 
 /**
  * @author Bao Qingping

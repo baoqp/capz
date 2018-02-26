@@ -6,7 +6,7 @@ import com.capz.core.AsyncResult;
 import com.capz.core.Handler;
 import com.capz.core.buffer.Buffer;
 import com.capz.core.http.impl.CapzHttpHeaders;
-import com.capz.core.stream.WriteStream;
+import com.capz.core.streams.WriteStream;
 
 import java.util.List;
 import java.util.Map;
@@ -180,7 +180,7 @@ public interface HttpServerResponse extends WriteStream<Buffer> {
     long bytesWritten();
 
     /**
-     * @return the id of the stream of this response, {@literal -1} for HTTP/1.x
+     * @return the id of the streams of this response, {@literal -1} for HTTP/1.x
      */
     int streamId();
 

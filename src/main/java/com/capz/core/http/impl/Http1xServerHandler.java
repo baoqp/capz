@@ -42,7 +42,7 @@ public class Http1xServerHandler extends CapzHttpHandler<Http1xServerConnection>
 
     @Override
     protected void handleMessage(Http1xServerConnection conn, AbstractContext context,
-                                 ChannelHandlerContext chctx, Object msg) throws Exception {
+                                 ChannelHandlerContext chctx, Object msg) {
         conn.handleMessage(msg);
     }
 

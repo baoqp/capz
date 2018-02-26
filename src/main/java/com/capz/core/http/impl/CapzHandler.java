@@ -22,9 +22,7 @@ public abstract class CapzHandler<C extends ConnectionBase> extends ChannelDuple
     private Handler<C> addHandler;
     private Handler<C> removeHandler;
 
-    /**
-     * Set the connection, this is usually called by subclasses when the channel is added to the pipeline.
-     */
+
     protected void setConnection(C connection) {
         conn = connection;
         endReadAndFlush = conn::endReadAndFlush;
@@ -33,17 +31,13 @@ public abstract class CapzHandler<C extends ConnectionBase> extends ChannelDuple
         }
     }
 
-    /**
-     * Set an handler to be called when the connection is set on this handler.
-     */
+    // 处理新增连接的handler
     public CapzHandler<C> addHandler(Handler<C> handler) {
         this.addHandler = handler;
         return this;
     }
 
-    /**
-     * Set an handler to be called when the connection is unset from this handler.
-     */
+    // 处理连接断开的handler
     public CapzHandler<C> removeHandler(Handler<C> handler) {
         this.removeHandler = handler;
         return this;
@@ -53,6 +47,7 @@ public abstract class CapzHandler<C extends ConnectionBase> extends ChannelDuple
         return conn;
     }
 
+    // 返回一个buf的副本
     public static ByteBuf safeBuffer(ByteBuf buf, ByteBufAllocator allocator) {
         if (buf == Unpooled.EMPTY_BUFFER) {
             return buf;
@@ -74,7 +69,7 @@ public abstract class CapzHandler<C extends ConnectionBase> extends ChannelDuple
     }
 
     @Override
-    public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {
+    public void channelWritabilityChanged(ChannelHandlerContext ctx) {
         C conn = getConnection();
         AbstractContext context = conn.getContext();
         context.executeFromIO(conn::handleInterestedOpsChanged);

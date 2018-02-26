@@ -21,13 +21,9 @@ import java.net.InetSocketAddress;
 
 /**
  * Abstract base class for TCP connections.
- * <p>
  * This class is optimised for performance when used on the same event loop. However it can be used safely from other threads.
- * <p>
  * The internal state is protected using the synchronized keyword. If always used on the same event loop, then
  * we benefit from biased locking which makes the overhead of synchronized near zero.
- *
- * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public abstract class ConnectionBase {
 
@@ -41,7 +37,7 @@ public abstract class ConnectionBase {
     private boolean read;
     private boolean needsFlush;
     private int writeInProgress;
-    private Object metric;
+
 
     protected ConnectionBase(CapzInternal capz, ChannelHandlerContext chctx, AbstractContext context) {
         this.capz = capz;
@@ -49,12 +45,7 @@ public abstract class ConnectionBase {
         this.context = context;
     }
 
-    /**
-     * Encode to message before writing to the channel
-     *
-     * @param obj the object to encode
-     * @return the encoded message
-     */
+    //
     protected Object encode(Object obj) {
         return obj;
     }
@@ -73,6 +64,7 @@ public abstract class ConnectionBase {
             }
         }
     }
+
 
     private void write(Object msg, ChannelPromise promise) {
         msg = encode(msg);
@@ -116,9 +108,6 @@ public abstract class ConnectionBase {
         return !chctx.channel().isWritable();
     }
 
-    /**
-     * Close the connection
-     */
     public void close() {
         // make sure everything is flushed out on close
         endReadAndFlush();
@@ -159,9 +148,7 @@ public abstract class ConnectionBase {
         }
     }
 
-    /**
-     * @return the Netty channel - for internal usage only
-     */
+
     public Channel channel() {
         return chctx.channel();
     }
@@ -170,17 +157,7 @@ public abstract class ConnectionBase {
         return context;
     }
 
-    public synchronized void metric(Object metric) {
-        this.metric = metric;
-    }
-
-    public synchronized Object metric() {
-        return metric;
-    }
-
-
     public synchronized void handleException(Throwable t) {
-
         if (exceptionHandler != null) {
             exceptionHandler.handle(t);
         } else {
@@ -189,7 +166,6 @@ public abstract class ConnectionBase {
     }
 
     public synchronized void handleClosed() {
-
         if (closeHandler != null) {
             capz.runOnContext(closeHandler);
         }

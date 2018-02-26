@@ -3,6 +3,10 @@ package com.capz.core.impl;
 import com.capz.core.*;
 import com.capz.core.eventbus.EventBus;
 import com.capz.core.eventbus.impl.EventBusImpl;
+import com.capz.core.http.HttpServer;
+import com.capz.core.http.HttpServerOptions;
+import com.capz.core.http.impl.HttpServerImpl;
+import com.capz.core.net.impl.ServerID;
 import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -54,6 +58,8 @@ public class CapzImpl implements CapzInternal {
     private final long defaultWorkerMaxExecTime;
 
     private DeploymentManager deploymentManager;
+
+    private final Map<ServerID, HttpServerImpl> sharedHttpServers = new HashMap<>();
 
 
     public CapzImpl() {
@@ -202,6 +208,7 @@ public class CapzImpl implements CapzInternal {
         return null;
     }
 
+    @Override
     public AbstractContext getContext() {
         AbstractContext context = (AbstractContext) context();
         if (context != null && context.owner == this) {
@@ -391,5 +398,21 @@ public class CapzImpl implements CapzInternal {
     synchronized void releaseWorkerExecutor(String name) {
         namedWorkerPools.remove(name);
     }
+
+    @Override
+    public Map<ServerID, HttpServerImpl> sharedHttpServers() {
+        return sharedHttpServers;
+    }
+
+
+    @Override
+    public HttpServer createHttpServer() {
+        return createHttpServer(new HttpServerOptions());
+    }
+
+    public HttpServer createHttpServer(HttpServerOptions serverOptions) {
+        return new HttpServerImpl(this, serverOptions);
+    }
+
 
 }

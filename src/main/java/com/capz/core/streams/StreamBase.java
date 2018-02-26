@@ -1,4 +1,4 @@
-package com.capz.core.stream;
+package com.capz.core.streams;
 
 import com.capz.core.Handler;
 
