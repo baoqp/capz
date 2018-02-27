@@ -27,19 +27,14 @@ public interface HttpServerFileUpload extends ReadStream<Buffer> {
     @Override
     HttpServerFileUpload resume();
 
-    /**
-     * Stream the content of this upload to the given file on storage.
-     *
-     * @param filename the name of the file
-     */
+    // Stream the content of this upload to the given file on storage.
     HttpServerFileUpload streamToFileSystem(String filename);
 
 
     String filename();
 
-
+    // 表单中的name属性
     String name();
-
 
     String contentType();
 

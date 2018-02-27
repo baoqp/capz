@@ -257,7 +257,6 @@ public class Http1xServerConnection extends Http1xConnectionBase implements Http
             HttpServerRequestImpl req = new HttpServerRequestImpl(this, request, resp);
             currentRequest = req;
             pendingResponse = resp;
-
             requestHandler.handle(req);
         } else if (msg == LastHttpContent.EMPTY_LAST_CONTENT) {
             handleLastHttpContent();

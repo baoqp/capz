@@ -1,6 +1,5 @@
 package com.capz.core.http.impl;
 
-import com.capz.core.Capz;
 import com.capz.core.CapzInternal;
 import com.capz.core.Handler;
 import com.capz.core.buffer.Buffer;
@@ -12,7 +11,6 @@ import com.capz.core.http.HttpServerRequest;
 import com.capz.core.streams.Pump;
 import com.capz.core.streams.impl.PumpImpl;
 
-import java.io.File;
 import java.nio.charset.Charset;
 
 class HttpServerFileUploadImpl implements HttpServerFileUpload {
@@ -27,10 +25,9 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
 
     private Handler<Buffer> dataHandler;
     private Handler<Void> endHandler;
-    //private AsyncFile file;
-    private File file;
-
     private Handler<Throwable> exceptionHandler;
+
+    private AsyncFile file;
 
     private long size;
     private boolean paused;
@@ -89,6 +86,21 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
         return this;
     }
 
+
+    @Override
+    public synchronized HttpServerFileUpload exceptionHandler(Handler<Throwable> exceptionHandler) {
+        this.exceptionHandler = exceptionHandler;
+        return this;
+    }
+
+    @Override
+    public synchronized HttpServerFileUpload endHandler(Handler<Void> handler) {
+        this.endHandler = handler;
+        return this;
+    }
+
+
+
     @Override
     public synchronized HttpServerFileUpload pause() {
         req.pause();
@@ -112,24 +124,12 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
         return this;
     }
 
-    @Override
-    public synchronized HttpServerFileUpload exceptionHandler(Handler<Throwable> exceptionHandler) {
-        this.exceptionHandler = exceptionHandler;
-        return this;
-    }
-
-    @Override
-    public synchronized HttpServerFileUpload endHandler(Handler<Void> handler) {
-        this.endHandler = handler;
-        return this;
-    }
 
     @Override
     public HttpServerFileUpload streamToFileSystem(String filename) {
+        // TODO 异步 ???
         pause();
-        // TODO 写入文件
-        AsyncFile file = new AsyncFileImpl(capz, filename, new OpenOptions(), capz.getOrCreateContext());
-
+        file = new AsyncFileImpl(capz, filename, new OpenOptions(), capz.getOrCreateContext());
         Pump p = new PumpImpl(HttpServerFileUploadImpl.this, file);
         p.start();
         resume();
@@ -177,13 +177,12 @@ class HttpServerFileUploadImpl implements HttpServerFileUpload {
         if (file == null) {
             notifyEndHandler();
         } else {
-            // TODO
-            /*file.close(ar -> {
+            file.close(ar -> {
                 if (ar.failed()) {
                     notifyExceptionHandler(ar.cause());
                 }
                 notifyEndHandler();
-            });*/
+            });
         }
     }
 

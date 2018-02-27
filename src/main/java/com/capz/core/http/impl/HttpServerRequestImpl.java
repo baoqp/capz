@@ -35,8 +35,6 @@ import java.util.Map;
  * we benefit from biased locking which makes the overhead of synchronized near zero.
  * <p>
  * It's important we don't have different locks for connection and request/response to avoid deadlock conditions
- *
- * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class HttpServerRequestImpl implements HttpServerRequest {
 

@@ -17,7 +17,7 @@ public abstract class CapzHttpHandler<C extends ConnectionBase> extends CapzHand
     }
 
     @Override
-    protected Object decode(Object msg, ByteBufAllocator allocator) throws Exception {
+    protected Object decode(Object msg, ByteBufAllocator allocator) {
         if (msg instanceof HttpContent) {
             HttpContent content = (HttpContent) msg;
             ByteBuf buf = content.content();

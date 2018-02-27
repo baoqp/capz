@@ -36,16 +36,18 @@ public class AsyncFileImpl implements AsyncFile {
     private final AbstractContext context;
     private boolean closed;
     private Runnable closedDeferred;
-    private long writesOutstanding;
+    private long writesOutstanding; // 待写入的
+
     private Handler<Throwable> exceptionHandler;
     private Handler<Void> drainHandler;
+    private Handler<Buffer> dataHandler;
+    private Handler<Void> endHandler;
+
     private long writePos;
     private int maxWrites = 128 * 1024;
     private int lwm = maxWrites / 2;
     private int readBufferSize = DEFAULT_READ_BUFFER_SIZE;
     private boolean paused;
-    private Handler<Buffer> dataHandler;
-    private Handler<Void> endHandler;
     private long readPos;
     private boolean readInProgress;
 
@@ -76,8 +78,6 @@ public class AsyncFileImpl implements AsyncFile {
             throw new FileSystemException(e);
         }
 
-
-
     }
 
     @Override
@@ -99,7 +99,7 @@ public class AsyncFileImpl implements AsyncFile {
     public synchronized AsyncFile read(Buffer buffer, int offset, long position, int length, Handler<AsyncResult<Buffer>> handler) {
         Objects.requireNonNull(buffer, "buffer");
         Objects.requireNonNull(handler, "handler");
-        assert offset >= 0 ;
+        assert offset >= 0;
         assert position >= 0;
         assert length >= 0;
         check();
@@ -116,7 +116,7 @@ public class AsyncFileImpl implements AsyncFile {
 
     private synchronized AsyncFile doWrite(Buffer buffer, long position, Handler<AsyncResult<Void>> handler) {
         Objects.requireNonNull(buffer, "buffer");
-        assert position >= 0 ;
+        assert position >= 0;
         check();
         Handler<AsyncResult<Void>> wrapped = ar -> {
             if (ar.succeeded()) {
@@ -161,7 +161,7 @@ public class AsyncFileImpl implements AsyncFile {
 
     @Override
     public synchronized AsyncFile setWriteQueueMaxSize(int maxSize) {
-        assert maxSize >= 2 ;
+        assert maxSize >= 2;
         check();
         this.maxWrites = maxSize;
         this.lwm = maxWrites / 2;
@@ -360,9 +360,7 @@ public class AsyncFileImpl implements AsyncFile {
         ch.write(buff, position, null, new java.nio.channels.CompletionHandler<Integer, Object>() {
 
             public void completed(Integer bytesWritten, Object attachment) {
-
                 long pos = position;
-
                 if (buff.hasRemaining()) {
                     // partial write
                     pos += bytesWritten;

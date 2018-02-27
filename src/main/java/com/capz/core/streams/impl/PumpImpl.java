@@ -33,20 +33,17 @@ public class PumpImpl<T> implements Pump {
         };
     }
 
-
     @Override
     public PumpImpl setWriteQueueMaxSize(int maxSize) {
         writeStream.setWriteQueueMaxSize(maxSize);
         return this;
     }
 
-
     @Override
     public PumpImpl start() {
         readStream.handler(dataHandler);
         return this;
     }
-
 
     @Override
     public PumpImpl stop() {

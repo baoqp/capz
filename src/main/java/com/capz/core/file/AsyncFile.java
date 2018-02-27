@@ -43,7 +43,6 @@ public interface AsyncFile extends ReadStream<Buffer>, WriteStream<Buffer> {
     //Close the file. The actual close happens asynchronously.
     void close();
 
-
     void close(Handler<AsyncResult<Void>> handler);
 
     /**
@@ -59,8 +58,8 @@ public interface AsyncFile extends ReadStream<Buffer>, WriteStream<Buffer> {
     /**
      * Reads {@code length} bytes of data from the file at position {@code position} in the file, asynchronously.
      * The read data will be written into the specified {@code Buffer buffer} at position {@code offset}.
-     * If data is read past the end of the file then zero bytes will be read.<p>
-     * When multiple reads are invoked on the same file there are no guarantees as to order in which those reads actually occur.
+     * If data is read past the end of the file then zero bytes will be read. When multiple reads are invoked on the
+     * same file there are no guarantees as to order in which those reads actually occur.
      * The handler will be called when the close is complete, or if an error occurs.
      */
 
